@@ -9,6 +9,7 @@
     "build:dev": "webpack --env mode=development"
   },
   "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@svgr/webpack": "^8.0.1",
     "@types/node": "^20.2.3",
     "@types/react": "^18.2.7",
