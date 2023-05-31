@@ -1,13 +1,15 @@
+import { Suspense } from 'react'
+
 import { AppRouter } from './providers/router'
 import { Navbar } from 'widgets/Navbar'
 import { useTheme } from './providers/ThemeProvider'
+import { classNames } from 'shared/lib/className'
+import { ThemeSwitcher } from 'shared/ui'
 
 import './styles/index.scss'
-import { classNames } from 'shared/lib/className'
-import { Suspense } from 'react'
 
 export const App = () => {
-  const { theme, toggleTheme } = useTheme()
+  const { theme } = useTheme()
 
   return (
     <div className={classNames('app', {}, [theme])}>
@@ -18,7 +20,7 @@ export const App = () => {
           <AppRouter />
         </div>
       </Suspense>
-      <button onClick={toggleTheme}>toggle</button>
+      <ThemeSwitcher />
     </div>
   )
 }
