@@ -7,6 +7,7 @@ import { useTheme } from './providers/ThemeProvider'
 import { classNames } from 'shared/lib/className'
 
 import './styles/index.scss'
+import { useTranslation } from 'react-i18next'
 
 export const App = () => {
   const { theme } = useTheme()
