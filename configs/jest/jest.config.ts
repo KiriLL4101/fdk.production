@@ -3,32 +3,46 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from 'path'
+
 export default {
-    globals: { __IS_DEV__: true },
+    // A set of global variables that need to be available in all test environments
+    globals: {
+        __IS_DEV__: true
+    },
+
+    // Automatically clear mock calls, instances and results before every test
     clearMocks: true,
-    testEnvironment: 'jest-environment-jsdom',
-    coveragePathIgnorePatterns: ['/node_modules/'],
-    rootDir: '../../',
+
+    // The test environment that will be used for testing
+    testEnvironment: 'jsdom',
+
+    // An array of regexp pattern strings used to skip coverage collection
+    coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
+
+    // An array of directory names to be searched recursively up from the requiring module's location
     moduleDirectories: ['node_modules'],
-    moduleFileExtensions: [
-        'js',
-        'mjs',
-        'cjs',
-        'jsx',
-        'ts',
-        'tsx',
-        'json',
-        'node'
-    ],
+
+    // An array of file extensions your modules use
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+
+    // The root directory that Jest should scan for tests and modules within
+    rootDir: '../../',
+
+    // The glob patterns Jest uses to detect test files
+    testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
+
     modulePaths: ['<rootDir>src'],
-    testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[jt]s?(x)'],
-    // collectCoverage: true,
-    // coverageDirectory: 'coverage',
-    // setupFilesAfterEnv: ['<rootDir>config/jest/jest.setup.ts'],
-    // moduleNameMapper: {
-    //     '\\.(s?css)$': 'identity-obj-proxy',
-    //     '\\.svg$': '<rootDir>config/jest/jestEmptyComponent.tsx'
-    // }
+
+    // A list of paths to modules that run some code to configure or set up the testing framework before each test
+    setupFilesAfterEnv: ['<rootDir>configs/jest/setupTests.ts'],
+
+    // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
+    moduleNameMapper: {
+        '\\.s?css$': 'identity-obj-proxy',
+        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        axios: 'axios/dist/node/axios.cjs'
+    }
 
     // All imported modules in your tests should be mocked automatically
     // automock: false,

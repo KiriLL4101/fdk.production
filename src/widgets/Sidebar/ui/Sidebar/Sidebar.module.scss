@@ -4,17 +4,64 @@
     background: var(--inverted-bg-color);
     position: relative;
     transition: width 0.3s;
+    padding: 0 30px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    fill: var(--secondary-color);
+}
+
+.link {
+    opacity: 1;
 }
 
 .switchers {
     position: absolute;
     bottom: 20px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
     width: 100%;
+    gap: 10px;
+}
+
+.items {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .collapsed {
     width: var(--sidebar-width-collapsed);
+
+    .switchers {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .link {
+        opacity: 0;
+        width: 0;
+    }
+
+    .items {
+        align-items: center;
+    }
+}
+
+.collapsed.Sidebar {
+    padding: 0;
+    text-align: center;
+}
+
+.collapseBtn {
+    position: absolute;
+    right: -32px;
+    bottom: 0;
 }
