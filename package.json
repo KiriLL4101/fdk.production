@@ -44,6 +44,7 @@
     "husky": "^8.0.3",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
+    "lint-staged": "^13.2.2",
     "mini-css-extract-plugin": "^2.7.6",
     "react-refresh": "^0.14.0",
     "sass": "^1.62.1",
@@ -67,5 +68,15 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^12.3.1",
     "react-router-dom": "^6.11.2"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "yarn lint:ts:fix",
+      "git add"
+    ],
+    "**/*.scss": [
+      "yarn lint:scss:fix",
+      "git add"
+    ]
   }
 }
