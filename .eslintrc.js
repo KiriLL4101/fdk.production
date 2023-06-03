@@ -59,7 +59,7 @@ module.exports = {
                 code: 100
             }
         ],
-        'linebreak-style': ['error', 'windows'],
+        'linebreak-style': 'off',
         'implicit-arrow-linebreak': 'off'
     },
     globals: {
