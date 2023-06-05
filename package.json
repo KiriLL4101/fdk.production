@@ -101,6 +101,7 @@
     ]
   },
   "loki": {
+    "chromeDockerUseCopy": true,
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.docker",
