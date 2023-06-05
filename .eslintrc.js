@@ -60,7 +60,8 @@ module.exports = {
             }
         ],
         'linebreak-style': 'off',
-        'implicit-arrow-linebreak': 'off'
+        'implicit-arrow-linebreak': 'off',
+        'object-curly-newline': 'off'
     },
     globals: {
         __IS_DEV__: true

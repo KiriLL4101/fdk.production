@@ -1,9 +1,6 @@
 {
     "extends": "stylelint-config-standard-scss",
     "rules": {
-        "indentation": [
-            4
-        ],
         "selector-class-pattern": "^[a-zA-Z0-9\\-_]+$",
         "block-no-empty": null,
         "no-empty-source": null

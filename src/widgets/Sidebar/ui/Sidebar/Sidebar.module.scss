@@ -14,7 +14,7 @@
 }
 
 .icon {
-    fill: var(--secondary-color);
+    fill: var(--inverted-secondary-color);
 }
 
 .link {
@@ -35,6 +35,7 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 .collapsed {
