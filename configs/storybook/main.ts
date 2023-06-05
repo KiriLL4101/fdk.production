@@ -24,6 +24,9 @@ export default {
     core: {
         builder: '@storybook/builder-webpack5'
     },
+    features: {
+        storyStoreV7: false
+    },
     async webpackFinal(config: Configuration) {
         const paths: BuildPath = {
             build: '',
