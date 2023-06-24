@@ -1,11 +1,10 @@
-/* eslint-disable i18next/no-literal-string */
-import { FC, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { classNames } from 'shared/lib/className'
-
-import { Button, Modal } from 'shared/ui'
+import { Button } from 'shared/ui'
 import { ButtonTheme } from 'shared/ui/Button/Button'
+import { LoginModal } from 'features/AuthByUserName/ui/LoginModal/LoginModal'
 
 import styles from './Navbar.module.scss'
 
@@ -14,25 +13,29 @@ interface NavbarProps {
 }
 
 export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
-    const [opened, setOpened] = useState(false)
+    const [isAuthModal, setIsAuthModal] = useState(false)
+
     const { t } = useTranslation()
+
+    const onCloseModal = useCallback(() => {
+        setIsAuthModal(false)
+    }, [])
+
+    const onShowModal = useCallback(() => {
+        setIsAuthModal(true)
+    }, [])
 
     return (
         <div className={classNames(styles.Navbar, {}, [className])}>
             <div className={styles.links}>
                 <Button
                     theme={ButtonTheme.CLEAR_INVERTED}
-                    onClick={() => setOpened(true)}
+                    onClick={onShowModal}
                 >
                     {t('Войти')}
                 </Button>
             </div>
-            <Modal isOpen={opened} onClose={() => setOpened(false)}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Distinctio dolorum vel repellendus facere, architecto porro,
-                quod similique, natus deleniti reiciendis nulla aspernatur.
-                Libero mollitia vitae natus ullam dolore illum! Nisi.
-            </Modal>
+            <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
         </div>
     )
 }

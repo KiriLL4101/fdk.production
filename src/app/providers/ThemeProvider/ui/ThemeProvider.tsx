@@ -12,6 +12,9 @@ interface ThemeProviderProps {
     children: ReactNode
 }
 
+document.body.classList.value = '';
+document.body.classList.add(defaultTheme);
+
 const ThemeProvider: FC<ThemeProviderProps> = ({ children, initialTheme }) => {
     const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme)
 

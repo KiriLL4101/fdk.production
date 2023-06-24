@@ -1,3 +1,12 @@
+.Modal {
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    color: var(--primary-color);
+}
+
 .overlay,
 .content {
     position: fixed;
@@ -9,12 +18,30 @@
 }
 
 .content {
-    padding: 10px;
+    padding: 20px;
+    transition: 0.3s transform;
+    transform: scale(0.5);
     border-radius: 4px;
     background-color: var(--bg-color);
     color: var(--primary-color);
     z-index: var(--modal-z-index);
     margin: auto;
-    max-width: 50%;
-    max-height: 50%;
+    width: fit-content;
+    height: fit-content;
+}
+
+.opened {
+    pointer-events: auto;
+    opacity: 1;
+    z-index: var(--modal-z-index);
+
+    .content {
+        transform: scale(1);
+    }
+}
+
+.isClosing {
+    .content {
+        transform: scale(0.2);
+    }
 }
