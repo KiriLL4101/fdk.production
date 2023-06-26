@@ -33,7 +33,10 @@ export const Input = memo((props: InputProps) => {
         if (!autofocus) return
 
         setIsFocused(true)
-        inputRef.current?.focus()
+
+        setTimeout(() => {
+            inputRef.current?.focus()
+        })
     }, [autofocus])
 
     const onBlur = () => {

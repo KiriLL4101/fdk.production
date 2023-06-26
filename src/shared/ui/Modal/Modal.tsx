@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import { classNames } from 'shared/lib/className'
 import { Portal } from '../Portal/Portal'
@@ -15,36 +16,41 @@ interface ModalProps {
 
 const ANIMATION_DELAY = 300
 
+const contentAnimation = {
+    enter: styles.contentEnter,
+    enterActive: styles.contentEnterActive,
+    exit: styles.contentExit,
+    exitActive: styles.contentExitActive
+}
+
 export const Modal: FC<ModalProps> = (props) => {
     const { className = '', children, isOpen, onClose } = props
 
-    const [isClosing, setIsClosing] = useState(false)
-    const [isMounted, setIsMounted] = useState(false)
-    const timerRef = useRef<ReturnType<typeof setTimeout>>()
+    const [mounted, setMounted] = useState(false)
+    const [animationIn, setAnimationIn] = useState(false)
+    const contentRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        if (isOpen) {
-            setIsMounted(true)
-        }
+        setAnimationIn(isOpen)
     }, [isOpen])
 
-    const closeHandler = useCallback(() => {
-        if (!onClose) return
-        setIsClosing(true)
-
-        timerRef.current = setTimeout(() => {
-            onClose()
-            setIsClosing(false)
-        }, ANIMATION_DELAY)
-    }, [onClose])
+    useEffect(() => {
+        if (isOpen && !mounted) {
+            setMounted(true)
+        } else if (!isOpen && mounted) {
+            setTimeout(() => {
+                setMounted(false)
+            }, ANIMATION_DELAY)
+        }
+    }, [isOpen, mounted])
 
     const onKeyDown = useCallback(
         (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
-                closeHandler()
+                onClose()
             }
         },
-        [closeHandler]
+        [onClose]
     )
 
     useEffect(() => {
@@ -53,25 +59,28 @@ export const Modal: FC<ModalProps> = (props) => {
         }
 
         return () => {
-            if (timerRef.current !== null) {
-                clearTimeout(timerRef.current)
-            }
             window.removeEventListener('keydown', onKeyDown)
         }
     }, [isOpen, onKeyDown])
 
-    const mods: Record<string, boolean> = {
-        [styles.opened]: isOpen,
-        [styles.isClosing]: isClosing
-    }
-
-    if (!isMounted) return null
+    if (!mounted) return null
 
     return (
         <Portal>
-            <div className={classNames(styles.Modal, mods, [className])}>
-                <div className={styles.overlay} onClick={closeHandler} />
-                <div className={styles.content}>{children}</div>
+            <div className={classNames(styles.modal, {}, [className])}>
+                <div className={styles.overlay} onClick={onClose} />
+                <CSSTransition
+                    in={animationIn}
+                    nodeRef={contentRef}
+                    timeout={ANIMATION_DELAY}
+                    mountOnEnter
+                    unmountOnExit
+                    classNames={contentAnimation}
+                >
+                    <div ref={contentRef} className={styles.content}>
+                        {children}
+                    </div>
+                </CSSTransition>
             </div>
         </Portal>
     )
