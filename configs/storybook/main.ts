@@ -4,6 +4,7 @@
 import type { StorybookConfig } from '@storybook/react-webpack5'
 import { Configuration, DefinePlugin, RuleSetRule } from 'webpack'
 import path from 'path'
+
 import { buildCssLoader } from '../build/loaders/buildCssLoader'
 import { BuildPath } from '../build/types/config'
 
@@ -27,14 +28,15 @@ export default {
     features: {
         storyStoreV7: false
     },
-    async webpackFinal(config: Configuration) {
+    async webpack(config: Configuration) {
         const paths: BuildPath = {
             build: '',
             html: '',
             entry: '',
-            src: path.resolve(__dirname, '..', '..', 'src')
+            src: path.resolve(__dirname, '..', '..', 'src', '.')
         }
-        config.resolve?.modules?.push(paths.src)
+
+        config.resolve?.modules?.push('./../../src')
         config.resolve?.extensions?.push('.ts', '.tsx')
 
         if (config.module?.rules) {
@@ -47,14 +49,14 @@ export default {
                 }
             )
         }
-        config?.module?.rules?.push({
+        config.module?.rules?.push({
             test: /\.svg$/,
             use: ['@svgr/webpack']
         })
 
         config.module?.rules?.push(buildCssLoader(true))
 
-        config?.plugins?.push(
+        config.plugins?.push(
             new DefinePlugin({
                 __IS_DEV__: JSON.stringify(true),
                 __API__: JSON.stringify(''),
