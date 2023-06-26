@@ -30,6 +30,7 @@ export const Button: FC<ButtonProps> = (props) => {
         theme = ButtonTheme.CLEAR,
         square,
         size = ButtonSize.M,
+        disabled = false,
         ...otherProps
     } = props;
 
@@ -37,6 +38,7 @@ export const Button: FC<ButtonProps> = (props) => {
         [styles[theme]]: true,
         [styles.square]: Boolean(square),
         [styles[size]]: true,
+        [styles.disabled]: disabled
     };
 
     return (
