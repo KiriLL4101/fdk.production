@@ -1,15 +1,19 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { Input } from './Input'
+
+const setup = () => {
+    const utils = render(<Input />)
+    const input = screen.getByTestId('custom-input') as HTMLInputElement
+    return {
+        input,
+        ...utils
+    }
+}
 
 describe('Input', () => {
     test('component Input to be in the document', () => {
-        render(<Input value="Test" />)
-        expect(screen.getByText('Test')).toBeInTheDocument()
+        const { input } = setup()
+        fireEvent.change(input, { target: { value: 'Test' } })
+        expect(input.value).toBe('Test')
     })
-
-    // test('component Button has class clear', () => {
-    //     render(<Button theme={ButtonTheme.CLEAR}>Test</Button>)
-    //     expect(screen.getByText('Test')).toHaveClass('clear')
-    //     screen.debug()
-    // })
 })
