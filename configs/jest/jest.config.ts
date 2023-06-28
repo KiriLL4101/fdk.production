@@ -8,7 +8,8 @@ import path from 'path'
 export default {
     // A set of global variables that need to be available in all test environments
     globals: {
-        __IS_DEV__: true
+        __IS_DEV__: true,
+        __API__: true
     },
 
     // Automatically clear mock calls, instances and results before every test

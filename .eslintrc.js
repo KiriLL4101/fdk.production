@@ -7,7 +7,8 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
-        'airbnb-typescript',
+        'plugin:@typescript-eslint/recommended',
+        'airbnb',
         'plugin:i18next/recommended',
         'plugin:storybook/recommended'
     ],
@@ -32,7 +33,7 @@ module.exports = {
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
-        // 'no-unused-vars': 'warn',
+        'no-unused-vars': 'off',
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-props-no-spreading': 'warn',
@@ -45,6 +46,7 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
         'comma-dangle': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
         semi: 'off',
         'i18next/no-literal-string': [
             'error',
@@ -66,7 +68,8 @@ module.exports = {
         'no-param-reassign': 'off'
     },
     globals: {
-        __IS_DEV__: true
+        __IS_DEV__: true,
+        __API__: true
     },
     overrides: [
         {
