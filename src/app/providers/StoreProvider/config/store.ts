@@ -4,6 +4,7 @@ import {
     Reducer,
     ReducersMapObject
 } from '@reduxjs/toolkit'
+import { NavigateOptions, To } from 'react-router-dom'
 
 import { counterReducer } from 'entities/Counter'
 import { userReducer } from 'entities/User'
@@ -11,8 +12,13 @@ import { userReducer } from 'entities/User'
 import { type StateSchema } from './stateSchema'
 import { createReducerManager } from './reducerManager'
 
-export function createReduxStore(initialState?: StateSchema) {
+export function createReduxStore(
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
+    navigate?: (to: To, options?: NavigateOptions) => void
+) {
     const rootReducer: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
         counter: counterReducer,
         user: userReducer
     }

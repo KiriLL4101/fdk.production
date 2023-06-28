@@ -5,6 +5,7 @@ module.exports = {
         jest: true
     },
     extends: [
+        'eslint:recommended',
         'plugin:react/recommended',
         'airbnb',
         'plugin:i18next/recommended',
