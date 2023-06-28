@@ -34,7 +34,7 @@ export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
         dispatch(userActions.logout())
     }, [dispatch])
 
-    if (authData && !isAuthModal) {
+    if (authData) {
         return (
             <div className={classNames(styles.Navbar, {}, [className])}>
                 <div className={styles.links}>
