@@ -65,7 +65,8 @@ module.exports = {
         'linebreak-style': 'off',
         'implicit-arrow-linebreak': 'off',
         'object-curly-newline': 'off',
-        'no-param-reassign': 'off'
+        'no-param-reassign': 'off',
+        'no-undef': 'off',
     },
     globals: {
         __IS_DEV__: true,

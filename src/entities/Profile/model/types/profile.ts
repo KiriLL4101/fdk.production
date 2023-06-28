@@ -1,8 +1,8 @@
 import { Country, Currency } from 'shared/const/common'
 
 export interface Profile {
-    first: string
-    lastname: string
+    firstName: string
+    lastName: string
     age: 22
     currency: Currency
     country: Country
@@ -12,8 +12,8 @@ export interface Profile {
 }
 
 export interface ProfileSchema {
-    data: Profile
+    data?: Profile
     isLoading: boolean
-    error: string
+    error?: string
     readonly: boolean
 }
