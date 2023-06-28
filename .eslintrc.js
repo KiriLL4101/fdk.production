@@ -7,7 +7,7 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
-        'airbnb',
+        'airbnb-typescript',
         'plugin:i18next/recommended',
         'plugin:storybook/recommended'
     ],
@@ -32,7 +32,7 @@ module.exports = {
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
-        'no-unused-vars': 'warn',
+        // 'no-unused-vars': 'warn',
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-props-no-spreading': 'warn',
