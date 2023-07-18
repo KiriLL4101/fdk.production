@@ -2,7 +2,7 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
-        jest: true
+        jest: true,
     },
     extends: [
         'eslint:recommended',
@@ -10,15 +10,15 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'airbnb',
         'plugin:i18next/recommended',
-        'plugin:storybook/recommended'
+        'plugin:storybook/recommended',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
-            jsx: true
+            jsx: true,
         },
         ecmaVersion: 'latest',
-        sourceType: 'module'
+        sourceType: 'module',
     },
     plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
@@ -28,8 +28,8 @@ module.exports = {
         'react/jsx-filename-extension': [
             2,
             {
-                extensions: ['.js', '.jsx', '.tsx']
-            }
+                extensions: ['.js', '.jsx', '.tsx'],
+            },
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
@@ -52,32 +52,35 @@ module.exports = {
             'error',
             {
                 markupOnly: true,
-                ignoreAttribute: ['data-testid', 'to']
-            }
+                ignoreAttribute: ['data-testid', 'to'],
+            },
         ],
         'max-len': [
             'error',
             {
                 ignoreComments: true,
-                code: 100
-            }
+                ignoreStrings: true,
+                tabWidth: 4,
+                code: 100,
+            },
         ],
         'linebreak-style': 'off',
         'implicit-arrow-linebreak': 'off',
         'object-curly-newline': 'off',
         'no-param-reassign': 'off',
         'no-undef': 'off',
+        'operator-linebreak': 'off',
     },
     globals: {
         __IS_DEV__: true,
-        __API__: true
+        __API__: true,
     },
     overrides: [
         {
             files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
-                'i18next/no-literal-string': 'off'
-            }
-        }
-    ]
+                'i18next/no-literal-string': 'off',
+            },
+        },
+    ],
 }
