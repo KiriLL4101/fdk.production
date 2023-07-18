@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import {
     type ChangeEvent,
     type InputHTMLAttributes,
@@ -21,13 +20,22 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = memo((props: InputProps) => {
-    const { label, className = '', onChange, autofocus, ...otherProps } = props
+    const {
+        label,
+        className = '',
+        onChange,
+        autofocus,
+        readOnly,
+        ...otherProps
+    } = props
 
     const inputId = useId()
 
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const [caretPosition, setCaretPosition] = useState(0)
     const inputRef = useRef<HTMLInputElement>(null)
+
+    const isCaretVisible = isFocused && !readOnly
 
     useEffect(() => {
         if (!autofocus) return
@@ -57,7 +65,13 @@ export const Input = memo((props: InputProps) => {
     }
 
     return (
-        <div className={styles.wrapper}>
+        <div
+            className={classNames(
+                styles.wrapper,
+                { [styles.readonly]: readOnly },
+                []
+            )}
+        >
             {label && (
                 <label className={styles.label} htmlFor={inputId}>
                     {`${label} >`}
@@ -72,10 +86,11 @@ export const Input = memo((props: InputProps) => {
                     onBlur={onBlur}
                     onFocus={onFocus}
                     onSelect={onSelect}
+                    readOnly={readOnly}
                     data-testid="custom-input"
                     {...otherProps}
                 />
-                {isFocused && (
+                {isCaretVisible && (
                     <span
                         className={styles.caret}
                         style={{ left: `${caretPosition * 7}px` }}

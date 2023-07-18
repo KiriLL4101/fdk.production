@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, memo } from 'react'
+import { ButtonHTMLAttributes, memo } from 'react'
 import { classNames } from 'shared/lib/className'
 import styles from './Button.module.scss'
 
@@ -6,6 +6,7 @@ export enum ButtonTheme {
     CLEAR = 'clear',
     CLEAR_INVERTED = 'clearInverted',
     OUTLINE = 'outline',
+    OUTLINE_RED = 'outline_red',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted'
 }
@@ -35,16 +36,18 @@ export const Button = memo((props: ButtonProps) => {
     } = props
 
     const mods: Record<string, boolean> = {
-        [styles[theme]]: true,
         [styles.square]: Boolean(square),
-        [styles[size]]: true,
         [styles.disabled]: disabled
     }
 
     return (
         <button
             type="button"
-            className={classNames(styles.Button, mods, [className])}
+            className={classNames(styles.Button, mods, [
+                className,
+                styles[theme],
+                styles[size]
+            ])}
             {...otherProps}
         >
             {children}
