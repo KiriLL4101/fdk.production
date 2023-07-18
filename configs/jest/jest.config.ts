@@ -9,7 +9,8 @@ export default {
     // A set of global variables that need to be available in all test environments
     globals: {
         __IS_DEV__: true,
-        __API__: true
+        __API__: '',
+        __PROJECT__: 'jest',
     },
 
     // Automatically clear mock calls, instances and results before every test
@@ -43,7 +44,7 @@ export default {
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
         'entities/(.*)$': '<rootDir>src/entities/$1',
-    }
+    },
 
     // All imported modules in your tests should be mocked automatically
     // automock: false,
