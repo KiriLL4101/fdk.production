@@ -11,10 +11,10 @@ export enum AppRoutes {
     PROFILE = 'profile',
 
     // last
-    NOT_FOUND = 'not_found'
+    NOT_FOUND = 'not_found',
 }
 
-type AppRoutersProps = RouteProps & {
+export type AppRoutersProps = RouteProps & {
     authOnly?: boolean
 }
 
@@ -24,26 +24,26 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.PROFILE]: '/profile',
 
     // last
-    [AppRoutes.NOT_FOUND]: '*'
+    [AppRoutes.NOT_FOUND]: '*',
 }
 
 export const routeConfig: Record<AppRoutes, AppRoutersProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
-        element: <MainPage />
+        element: <MainPage />,
     },
     [AppRoutes.ABOUT]: {
         path: RoutePath.about,
-        element: <AboutPage />
+        element: <AboutPage />,
     },
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,
         element: <ProfilePage />,
-        authOnly: true
+        authOnly: true,
     },
 
     [AppRoutes.NOT_FOUND]: {
         path: RoutePath.not_found,
-        element: <NotFound />
-    }
+        element: <NotFound />,
+    },
 }
