@@ -39,18 +39,13 @@ export const ProfileCard = (props: ProfileCardProps) => {
         onChangeUsername,
         onChangeAvatar,
         onChangeCountry,
-        onChangeCurrency
+        onChangeCurrency,
     } = props
     const { t } = useTranslation('profile')
 
     if (isLoading) {
         return (
-            <div
-                className={classNames(styles.ProfileCard, {}, [
-                    className,
-                    styles.loading
-                ])}
-            >
+            <div className={classNames(styles.ProfileCard, {}, [className, styles.loading])}>
                 <Loader />
             </div>
         )
@@ -58,12 +53,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     if (error) {
         return (
-            <div
-                className={classNames(styles.ProfileCard, {}, [
-                    className,
-                    styles.loading
-                ])}
-            >
+            <div className={classNames(styles.ProfileCard, {}, [className, styles.loading])}>
                 <Text
                     theme={TextTheme.ERROR}
                     title={t('Произошла ошибка при загрузке профиля')}
@@ -79,11 +69,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
             <div className={styles.data}>
                 {data?.avatar && (
                     <div className={styles.avatar}>
-                        <Avatar
-                            src={data.avatar}
-                            size={200}
-                            alt={data?.firstName}
-                        />
+                        <Avatar src={data.avatar} size={200} alt={data?.firstName} />
                     </div>
                 )}
                 <Input
