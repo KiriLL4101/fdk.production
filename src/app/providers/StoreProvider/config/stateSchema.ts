@@ -3,7 +3,7 @@ import {
     CombinedState,
     EnhancedStore,
     Reducer,
-    ReducersMapObject
+    ReducersMapObject,
 } from '@reduxjs/toolkit'
 import { AxiosInstance } from 'axios'
 import { NavigateOptions, To } from 'react-router-dom'
@@ -12,6 +12,7 @@ import { CounterSchema } from 'entities/Counter'
 import { ProfileSchema } from 'entities/Profile'
 import { UserSchema } from 'entities/User'
 import { LoginSchema } from 'features/AuthByUserName'
+import { ArticleDetailsSchema } from 'entities/Article'
 
 export interface StateSchema {
     counter: CounterSchema
@@ -20,16 +21,14 @@ export interface StateSchema {
     // async reducers
     loginForm?: LoginSchema
     profile?: ProfileSchema
+    articleDetails?: ArticleDetailsSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
 
 export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>
-    reduce: (
-        state: StateSchema,
-        action: AnyAction
-    ) => CombinedState<StateSchema>
+    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>
     add: (key: StateSchemaKey, reducer: Reducer) => void
     remove: (key: StateSchemaKey) => void
 }

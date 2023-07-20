@@ -8,50 +8,59 @@ import path from 'path'
 import { buildCssLoader } from '../build/loaders/buildCssLoader'
 import { BuildPath } from '../build/types/config'
 
+const pathToInlineSvg = path.resolve(__dirname, '../../src/shared/assets/icons')
+
 export default {
     stories: ['../../src/**/*.mdx', '../../src/**/*.stories.@(js|jsx|ts|tsx)'],
     addons: [
         '@storybook/addon-links',
         '@storybook/addon-essentials',
-        '@storybook/addon-interactions'
+        '@storybook/addon-interactions',
     ],
     framework: {
         name: '@storybook/react-webpack5',
-        options: {}
+        options: {},
     },
     docs: {
-        autodocs: 'tag'
+        autodocs: 'tag',
     },
     core: {
-        builder: '@storybook/builder-webpack5'
+        builder: '@storybook/builder-webpack5',
     },
     features: {
-        storyStoreV7: false
+        storyStoreV7: false,
     },
     async webpack(config: Configuration) {
         const paths: BuildPath = {
             build: '',
             html: '',
             entry: '',
-            src: path.resolve(__dirname, '..', '..', 'src', '.')
+            src: path.resolve(__dirname, '..', '..', 'src', '.'),
         }
 
         config.resolve?.modules?.push('./../../src')
         config.resolve?.extensions?.push('.ts', '.tsx')
 
         if (config.module?.rules) {
-            config.module.rules = config.module?.rules?.map(
-                (rule: RuleSetRule | '...') => {
-                    if (rule !== '...' && /svg/.test(rule.test as string)) {
-                        return { ...rule, exclude: /\.svg$/i }
-                    }
-                    return rule
+            config.module.rules = config.module?.rules?.map((rule: RuleSetRule | '...') => {
+                if (rule !== '...' && /svg/.test(rule.test as string)) {
+                    return { ...rule, exclude: /\.svg$/i }
                 }
-            )
+                return rule
+            })
         }
+
         config.module?.rules?.push({
             test: /\.svg$/,
-            use: ['@svgr/webpack']
+            include: pathToInlineSvg,
+            use: [
+                {
+                    loader: '@svgr/webpack',
+                    options: {
+                        icon: true,
+                    },
+                },
+            ],
         })
 
         config.module?.rules?.push(buildCssLoader(true))
@@ -60,10 +69,10 @@ export default {
             new DefinePlugin({
                 __IS_DEV__: JSON.stringify(true),
                 __API__: JSON.stringify(''),
-                __PROJECT__: JSON.stringify('storybook')
+                __PROJECT__: JSON.stringify('storybook'),
             })
         )
 
         return config
-    }
+    },
 } satisfies StorybookConfig

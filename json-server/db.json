@@ -804,90 +804,90 @@
   "comments": [
     {
       "id": 1,
-      "body": "some comment",
+      "test": "some comment",
       "articleId": 1,
       "userId": 1
     },
     {
       "id": 2,
-      "body": "some comment",
+      "test": "some comment",
       "articleId": 1,
       "userId": 2
     },
     {
       "id": 3,
-      "body": "some comment 1",
+      "test": "some comment 1",
       "articleId": 1,
       "userId": 1
     },
     {
       "id": 4,
-      "body": "some comment 2",
+      "test": "some comment 2",
       "articleId": 1,
       "userId": 2
     },
     {
-      "body": "postman",
+      "test": "postman",
       "articleId": 1,
       "userId": 1,
       "id": 5
     },
     {
-      "body": "new comment",
+      "test": "new comment",
       "articleId": 1,
       "userId": 1,
       "id": 6
     },
     {
-      "body": "new comment",
+      "test": "new comment",
       "articleId": 1,
       "userId": 1,
       "id": 7
     },
     {
-      "body": "hello world",
+      "test": "hello world",
       "articleId": 1,
       "userId": 1,
       "id": 8
     },
     {
-      "body": "hell",
+      "test": "hell",
       "articleId": 1,
       "userId": 1,
       "id": 9
     },
     {
-      "body": "dfsfds",
+      "test": "dfsfds",
       "articleId": 1,
       "userId": 1,
       "id": 10
     },
     {
-      "body": "postman",
+      "test": "postman",
       "articleId": 1,
       "userId": 1,
       "id": 11
     },
     {
-      "body": "jdsfkds",
+      "test": "jdsfkds",
       "articleId": 1,
       "userId": 1,
       "id": 12
     },
     {
-      "body": "sads",
+      "test": "sads",
       "articleId": 1,
       "userId": 1,
       "id": 13
     },
     {
-      "body": "new comment new ",
+      "test": "new comment new ",
       "articleId": 1,
       "userId": 1,
       "id": 14
     },
     {
-      "body": "mlkmlk",
+      "test": "mlkmlk",
       "articleId": 4,
       "userId": 1,
       "id": 15
