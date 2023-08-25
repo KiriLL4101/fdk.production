@@ -804,90 +804,90 @@
   "comments": [
     {
       "id": 1,
-      "test": "some comment",
+      "text": "some comment",
       "articleId": 1,
       "userId": 1
     },
     {
       "id": 2,
-      "test": "some comment",
+      "text": "some comment",
       "articleId": 1,
       "userId": 2
     },
     {
       "id": 3,
-      "test": "some comment 1",
+      "text": "some comment 1",
       "articleId": 1,
       "userId": 1
     },
     {
       "id": 4,
-      "test": "some comment 2",
+      "text": "some comment 2",
       "articleId": 1,
       "userId": 2
     },
     {
-      "test": "postman",
+      "text": "postman",
       "articleId": 1,
       "userId": 1,
       "id": 5
     },
     {
-      "test": "new comment",
+      "text": "new comment",
       "articleId": 1,
       "userId": 1,
       "id": 6
     },
     {
-      "test": "new comment",
+      "text": "new comment",
       "articleId": 1,
       "userId": 1,
       "id": 7
     },
     {
-      "test": "hello world",
+      "text": "hello world",
       "articleId": 1,
       "userId": 1,
       "id": 8
     },
     {
-      "test": "hell",
+      "text": "hell",
       "articleId": 1,
       "userId": 1,
       "id": 9
     },
     {
-      "test": "dfsfds",
+      "text": "dfsfds",
       "articleId": 1,
       "userId": 1,
       "id": 10
     },
     {
-      "test": "postman",
+      "text": "postman",
       "articleId": 1,
       "userId": 1,
       "id": 11
     },
     {
-      "test": "jdsfkds",
+      "text": "jdsfkds",
       "articleId": 1,
       "userId": 1,
       "id": 12
     },
     {
-      "test": "sads",
+      "text": "sads",
       "articleId": 1,
       "userId": 1,
       "id": 13
     },
     {
-      "test": "new comment new ",
+      "text": "new comment new ",
       "articleId": 1,
       "userId": 1,
       "id": 14
     },
     {
-      "test": "mlkmlk",
+      "text": "mlkmlk",
       "articleId": 4,
       "userId": 1,
       "id": 15
@@ -896,16 +896,16 @@
   "users": [
     {
       "id": 1,
-      "username": "admin",
+      "username": "Vladislav",
       "password": "123",
       "roles": [
         "ADMIN"
       ],
-      "avatar": "https://lablab.ai/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Flablab-static-eu%2Fimages%252Fusers%252Fcldzwest200dfb70s3i8pc564_5w13le5_picture.jpg&w=256&q=75"
+      "avatar": "https://img.freepik.com/premium-vector/man-avatar-profile-round-icon_24640-14044.jpg?w=2000"
     },
     {
       "id": 2,
-      "username": "Ukrainer",
+      "username": "Ivan",
       "password": "123",
       "roles": [
         "USER"
@@ -914,7 +914,7 @@
     },
     {
       "id": 3,
-      "username": "manager",
+      "username": "Robert",
       "password": "123",
       "roles": [
         "MANAGER"
