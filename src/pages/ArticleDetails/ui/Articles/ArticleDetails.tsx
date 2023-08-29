@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
@@ -12,13 +13,16 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect'
-import styles from './ArticleDetails.module.scss'
+import { AddCommentForm } from 'features/addCommentsForm'
 import {
     articleDetailsCommentsReducer,
     getArticleComments,
 } from '../../model/slices/articleDetailsCommentsSlice'
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
+import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle'
+
+import styles from './ArticleDetails.module.scss'
 
 const reducers: ReducersList = {
     articleDetailsComments: articleDetailsCommentsReducer,
@@ -35,6 +39,13 @@ const ArticleDetailsPage = () => {
         dispatch(fetchCommentsByArticleId(id))
     })
 
+    const onSendComment = useCallback(
+        (text: string) => {
+            dispatch(addCommentForArticle(text))
+        },
+        [dispatch]
+    )
+
     if (!id) {
         return <div className={styles.articleDetailsPage}>{t('Статья не найдена')}</div>
     }
@@ -43,8 +54,11 @@ const ArticleDetailsPage = () => {
         <DynamicModuleLoader removeAfterUnmount reducers={reducers}>
             <div className={styles.articleDetailsPage}>
                 <ArticleDetails articleId={id} />
-                <Text className={styles.commentTitle} title={t('Комментарии')} />
-                <CommentList isLoading={commentsIsLoading} comments={comments} />
+                <div className={styles.commentsBlock}>
+                    <Text title={t('Комментарии')} />
+                    <AddCommentForm onSendComment={onSendComment} />
+                    <CommentList isLoading={commentsIsLoading} comments={comments} />
+                </div>
             </div>
         </DynamicModuleLoader>
     )

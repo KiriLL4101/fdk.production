@@ -1,6 +1,7 @@
-import { ChangeEvent, useCallback, useEffect } from 'react'
+import { ChangeEvent, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
 
 import {
     profileReducer,
@@ -22,6 +23,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { Currency } from 'entities/Currency'
 import { Country } from 'entities/Country'
 import { Text, TextTheme } from 'shared/ui'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect'
 import { ProfileHeader } from './ProfileHeader/ProfileHeader'
 
 const reducers: ReducersList = {
@@ -31,6 +33,8 @@ const reducers: ReducersList = {
 const Profile = () => {
     const { t } = useTranslation('profile')
     const dispatch = useAppDispatch()
+
+    const { id } = useParams<{ id: string }>()
 
     const formData = useSelector(getProfileForm)
     const isLoading = useSelector(getProfileIsLoading)
@@ -46,11 +50,11 @@ const Profile = () => {
         [ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
     }
 
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData())
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id))
         }
-    }, [dispatch])
+    })
 
     const onChangeFirstName = useCallback(
         ({ target }: ChangeEvent<HTMLInputElement>) => {

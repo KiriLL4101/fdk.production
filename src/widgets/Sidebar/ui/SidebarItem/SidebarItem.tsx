@@ -6,7 +6,7 @@ import { getUserAuthData } from 'entities/User'
 import { AppLink } from 'shared/ui'
 import { AppLinkVariant } from 'shared/ui/AppLink/AppLink'
 import { classNames } from 'shared/lib/className'
-import { SidebarItemType } from '../../model/items'
+import { SidebarItemType } from '../../model/types/sidebar'
 
 import styles from './SidebarItem.module.scss'
 
@@ -24,17 +24,13 @@ export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
     }
 
     return (
-        <AppLink
-            variant={AppLinkVariant.SECONDARY}
-            to={item.path}
-            className={styles.item}
-        >
+        <AppLink variant={AppLinkVariant.SECONDARY} to={item.path} className={styles.item}>
             <item.Icon className={styles.icon} />
             <span
                 className={classNames(
                     styles.link,
                     {
-                        [styles.collapsed]: collapsed
+                        [styles.collapsed]: collapsed,
                     },
                     []
                 )}

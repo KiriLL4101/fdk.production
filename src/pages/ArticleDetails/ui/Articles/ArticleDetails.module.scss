@@ -2,6 +2,8 @@
     min-height: 100%;
 }
 
-.commentTitle {
-    margin: 20px 0;
+.commentsBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

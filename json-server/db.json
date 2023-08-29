@@ -863,40 +863,16 @@
       "id": 10
     },
     {
-      "text": "postman",
-      "articleId": 1,
+      "articleId": 2,
       "userId": 1,
+      "text": "Комментарий про котлин",
       "id": 11
-    },
-    {
-      "text": "jdsfkds",
-      "articleId": 1,
-      "userId": 1,
-      "id": 12
-    },
-    {
-      "text": "sads",
-      "articleId": 1,
-      "userId": 1,
-      "id": 13
-    },
-    {
-      "text": "new comment new ",
-      "articleId": 1,
-      "userId": 1,
-      "id": 14
-    },
-    {
-      "text": "mlkmlk",
-      "articleId": 4,
-      "userId": 1,
-      "id": 15
     }
   ],
   "users": [
     {
       "id": 1,
-      "username": "Vladislav",
+      "username": "kiril",
       "password": "123",
       "roles": [
         "ADMIN"
@@ -922,17 +898,92 @@
       "avatar": "https://i.pinimg.com/564x/db/6b/a8/db6ba8c0e0244f71230e6aae953e57be.jpg"
     }
   ],
-  "profile": {
-    "id": 1,
-    "firstName": "Kirill",
-    "lastName": "Fedechkin",
-    "age": 24,
-    "currency": "RUB",
-    "country": "Armenia",
-    "city": "Moscow",
-    "username": "admin",
-    "avatar": "https://images.unsplash.com/photo-1606225457115-9b0de873c5db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-  },
+  "profile": [
+    {
+      "id": 1,
+      "firstName": "Kirill",
+      "lastName": "Fedechkin",
+      "age": 18,
+      "currency": "RUB",
+      "country": "Armenia",
+      "city": "Moscow",
+      "username": "admin",
+      "avatar": "https://images.unsplash.com/photo-1606225457115-9b0de873c5db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+    },
+    {
+      "id": 2,
+      "firstName": "Demian123",
+      "lastName": "Netliukh",
+      "age": 18,
+      "currency": "JPY",
+      "country": "UK",
+      "city": "London",
+      "username": "admin",
+      "avatar": "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png"
+    },
+    {
+      "id": 3,
+      "firstName": "Other Demian",
+      "lastName": "Other Netliukh",
+      "age": 14,
+      "currency": "UAH",
+      "country": "Ukraine",
+      "city": "Kyiv",
+      "username": "Ukrainer",
+      "avatar": "https://i.pinimg.com/564x/db/6b/a8/db6ba8c0e0244f71230e6aae953e57be.jpg"
+    },
+    {
+      "id": 4,
+      "firstName": "Manager",
+      "lastName": "Managerov",
+      "age": 14,
+      "currency": "UAH",
+      "country": "Ukraine",
+      "city": "Kyiv",
+      "username": "Ukrainer"
+    },
+    {
+      "id": 5,
+      "firstName": "Test",
+      "lastName": "Testov",
+      "age": 465,
+      "currency": "UAH",
+      "country": "Ukraine",
+      "city": "Kyiv",
+      "username": "testUser"
+    },
+    {
+      "id": 6,
+      "username": "user",
+      "firstName": "",
+      "lastName": "",
+      "age": 30,
+      "currency": "",
+      "country": "",
+      "city": "",
+      "avatar": ""
+    },
+    {
+      "id": 7,
+      "username": "user1",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "currency": "",
+      "country": "",
+      "city": "",
+      "avatar": ""
+    },
+    {
+      "id": 8,
+      "username": "Demianeen",
+      "firstName": "Feliche-Demian",
+      "lastName": "Netliukh",
+      "city": "Corsham",
+      "avatar": "sadasd",
+      "age": 30
+    }
+  ],
   "article-rating": [
     {
       "id": 1,
