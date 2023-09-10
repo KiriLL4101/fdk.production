@@ -70,6 +70,7 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-undef': 'off',
         'operator-linebreak': 'off',
+        'react/no-array-index-key': 'off'
     },
     globals: {
         __IS_DEV__: true,

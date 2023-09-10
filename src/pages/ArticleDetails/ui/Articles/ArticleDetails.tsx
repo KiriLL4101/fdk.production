@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { ArticleDetails } from 'entities/Article'
 import { CommentList } from 'entities/Comment'
-import { Text } from 'shared/ui'
+import { Button, ButtonTheme, Text } from 'shared/ui'
 
 import {
     DynamicModuleLoader,
@@ -14,6 +14,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect'
 import { AddCommentForm } from 'features/addCommentsForm'
+import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import {
     articleDetailsCommentsReducer,
     getArticleComments,
@@ -31,6 +32,8 @@ const reducers: ReducersList = {
 const ArticleDetailsPage = () => {
     const { t } = useTranslation('article-details')
     const { id } = useParams<{ id: string }>()
+    const navigate = useNavigate();
+
     const dispatch = useAppDispatch()
     const comments = useSelector(getArticleComments.selectAll)
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading)
@@ -46,6 +49,10 @@ const ArticleDetailsPage = () => {
         [dispatch]
     )
 
+    const onBackToList = useCallback(() => {
+        navigate(RoutePath.articles);
+    }, [navigate]);
+
     if (!id) {
         return <div className={styles.articleDetailsPage}>{t('Статья не найдена')}</div>
     }
@@ -53,6 +60,9 @@ const ArticleDetailsPage = () => {
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={reducers}>
             <div className={styles.articleDetailsPage}>
+                <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
+                    {t('Назад к списку')}
+                </Button>
                 <ArticleDetails articleId={id} />
                 <div className={styles.commentsBlock}>
                     <Text title={t('Комментарии')} />

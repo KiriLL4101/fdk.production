@@ -11,6 +11,7 @@ import { fetchArticleById } from 'entities/Article/model/services/fetchArticleBy
 import { Avatar, Icon, Skeleton, Text, TextAlign, TextSize } from 'shared/ui'
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg'
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect'
 
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice'
 import {
@@ -63,11 +64,9 @@ export const ArticleDetails = ({ articleId }: ArticleDetailsProps) => {
         return null
     }, [])
 
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchArticleById(articleId))
-        }
-    }, [dispatch, articleId])
+    useInitialEffect(() => {
+        dispatch(fetchArticleById(articleId))
+    })
 
     let content
 
