@@ -20,8 +20,8 @@ import {
     getArticlesPageIsLoading,
     getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors'
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList'
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
 
 import styles from './Articles.module.scss'
 
@@ -49,12 +49,7 @@ const Articles = () => {
     }, [dispatch])
 
     useInitialEffect(() => {
-        dispatch(articlesPageActions.initState())
-        dispatch(
-            fetchArticlesList({
-                page: 1,
-            })
-        )
+        dispatch(initArticlesPage());
     })
 
     return (
