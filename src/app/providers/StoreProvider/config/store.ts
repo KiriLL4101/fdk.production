@@ -3,6 +3,7 @@ import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@redu
 import { counterReducer } from 'entities/Counter'
 import { userReducer } from 'entities/User'
 import { $api } from 'shared/api'
+import { restorationScrollReducer } from 'features/restorationScroll'
 import { ThunkExtraArg, type StateSchema } from './stateSchema'
 import { createReducerManager } from './reducerManager'
 
@@ -14,6 +15,7 @@ export function createReduxStore(
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
+        restorationScroll: restorationScrollReducer
     }
 
     const reducerManager = createReducerManager(rootReducer)

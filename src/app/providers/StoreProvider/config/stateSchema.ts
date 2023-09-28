@@ -6,7 +6,6 @@ import {
     ReducersMapObject,
 } from '@reduxjs/toolkit'
 import { AxiosInstance } from 'axios'
-import { NavigateOptions, To } from 'react-router-dom'
 
 import { CounterSchema } from 'entities/Counter'
 import { ProfileSchema } from 'entities/Profile'
@@ -16,10 +15,12 @@ import { ArticleDetailsSchema } from 'entities/Article'
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetails'
 import { ArticlesPageSchema } from 'pages/Articles'
 import { AddCommentFormSchema } from 'features/addCommentsForm'
+import { RestorationScrollSchema } from 'features/restorationScroll'
 
 export interface StateSchema {
     counter: CounterSchema
     user: UserSchema
+    restorationScroll: RestorationScrollSchema
 
     // async reducers
     loginForm?: LoginSchema

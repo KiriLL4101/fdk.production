@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { ArticleDetails } from 'entities/Article'
 import { CommentList } from 'entities/Comment'
@@ -11,10 +12,10 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-import { useSelector } from 'react-redux'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect'
 import { AddCommentForm } from 'features/addCommentsForm'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import { Page } from 'widgets/Page/Page'
 import {
     articleDetailsCommentsReducer,
     getArticleComments,
@@ -59,7 +60,7 @@ const ArticleDetailsPage = () => {
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={reducers}>
-            <div className={styles.articleDetailsPage}>
+            <Page className={styles.articleDetailsPage}>
                 <Button theme={ButtonTheme.OUTLINE} onClick={onBackToList}>
                     {t('Назад к списку')}
                 </Button>
@@ -69,7 +70,7 @@ const ArticleDetailsPage = () => {
                     <AddCommentForm onSendComment={onSendComment} />
                     <CommentList isLoading={commentsIsLoading} comments={comments} />
                 </div>
-            </div>
+            </Page>
         </DynamicModuleLoader>
     )
 }
