@@ -1,39 +1,35 @@
-import { ChangeEvent, memo, useMemo } from 'react'
+import { ChangeEvent, useMemo } from 'react'
 import { DefaultTFuncReturn } from 'i18next'
 
 import { classNames } from 'shared/lib/className'
 
 import styles from './Select.module.scss'
 
-export interface SelectOption {
-    value: string
+export interface SelectOption<T> {
+    value: T
     content: string
 }
 
-interface SelectProps {
+interface SelectProps<T> {
     className?: string
     label?: DefaultTFuncReturn | string
-    options?: SelectOption[]
-    selected?: string
-    onChange?: (value: string) => void
+    options?: SelectOption<T>[]
+    selected?: T
+    onChange?: (value: T) => void
     readonly?: boolean
 }
 
-export const Select = memo((props: SelectProps) => {
+export const Select = <T extends string>(props: SelectProps<T>) => {
     const { className, label, options, onChange, selected, readonly } = props
 
     const onChangeHandler = ({ target }: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(target.value)
+        onChange?.(target.value as T)
     }
 
     const optionsList = useMemo(
         () =>
             options?.map((opt) => (
-                <option
-                    className={styles.option}
-                    value={opt.value}
-                    key={opt.value}
-                >
+                <option className={styles.option} value={opt.value} key={opt.value}>
                     {opt.content}
                 </option>
             )),
@@ -53,4 +49,4 @@ export const Select = memo((props: SelectProps) => {
             </select>
         </div>
     )
-})
+}

@@ -1,47 +1,43 @@
-import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
-import { classNames } from 'shared/lib/className';
-import { Avatar, Button, ButtonTheme, Card, Icon, Text } from 'shared/ui';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import EyeIcon from 'shared/assets/icons/eye-20-20.svg';
-import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import {
-    Article,
-    ArticleBlockType,
-    ArticleTextBlock,
-    ArticleView,
-} from '../../model/types/article';
+import { classNames } from 'shared/lib/className'
+import { Avatar, Button, ButtonTheme, Card, Icon, Text } from 'shared/ui'
+import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import EyeIcon from 'shared/assets/icons/eye-20-20.svg'
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent'
+import { Article, ArticleBlockType, ArticleTextBlock, ArticleView } from '../../model/types/article'
 
-import styles from './ArticleListItem.module.scss';
+import styles from './ArticleListItem.module.scss'
 
 interface ArticleListItemProps {
-  className?: string;
-  article: Article;
-  view: ArticleView;
+    className?: string
+    article: Article
+    view: ArticleView
 }
 
 export const ArticleListItem = (props: ArticleListItemProps) => {
-    const { className, article, view } = props;
-    const { t } = useTranslation();
-    const navigate = useNavigate();
+    const { className, article, view } = props
+    const { t } = useTranslation()
+    const navigate = useNavigate()
 
     const onOpenArticle = useCallback(() => {
-        navigate(RoutePath.article_details + article.id);
-    }, [article.id, navigate]);
+        navigate(RoutePath.article_details + article.id)
+    }, [article.id, navigate])
 
-    const types = <Text text={article.types.join(', ')} className={styles.types} />;
+    const types = <Text text={article.types.join(', ')} className={styles.types} />
+
     const views = (
         <>
             <Text text={String(article.views)} className={styles.views} />
             <Icon Svg={EyeIcon} />
         </>
-    );
+    )
     if (view === ArticleView.BIG) {
         const textBlock = article.blocks.find(
             (block) => block.type === ArticleBlockType.TEXT
-        ) as ArticleTextBlock;
+        ) as ArticleTextBlock
 
         return (
             <div className={classNames(styles.ArticleListItem, {}, [className, styles[view]])}>
@@ -65,7 +61,7 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
                     </div>
                 </Card>
             </div>
-        );
+        )
     }
 
     return (
@@ -82,5 +78,5 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
                 <Text text={article.title} className={styles.title} />
             </Card>
         </div>
-    );
-};
+    )
+}

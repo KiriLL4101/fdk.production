@@ -54,7 +54,7 @@ export const Page = memo((props: PageProps) => {
             className={classNames(styles.page, {}, [className])}
         >
             {children}
-            <div ref={triggerRef} />
+            {onScrollEnd && <div ref={triggerRef} className={styles.trigger} />}
         </section>
     )
 })

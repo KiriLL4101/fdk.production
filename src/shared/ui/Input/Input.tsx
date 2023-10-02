@@ -22,7 +22,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input = memo((props: InputProps) => {
     const {
         label,
-        className = '',
+        className,
         onChange,
         autofocus,
         readOnly,
@@ -69,7 +69,7 @@ export const Input = memo((props: InputProps) => {
             className={classNames(
                 styles.wrapper,
                 { [styles.readonly]: readOnly },
-                []
+                [className]
             )}
         >
             {label && (
@@ -81,7 +81,7 @@ export const Input = memo((props: InputProps) => {
                 <input
                     ref={inputRef}
                     id={inputId}
-                    className={classNames(styles.input, {}, [className])}
+                    className={styles.input}
                     onChange={onChangeHandle}
                     onBlur={onBlur}
                     onFocus={onFocus}
