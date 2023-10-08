@@ -1,6 +1,7 @@
 import { classNames } from 'shared/lib/className'
 import { useTranslation } from 'react-i18next'
 import { Text, TextSize } from 'shared/ui'
+import { HTMLAttributeAnchorTarget } from 'react'
 import { Article, ArticleView } from '../../model/types/article'
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem'
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton'
@@ -12,6 +13,7 @@ interface ArticleListProps {
     articles: Article[]
     isLoading?: boolean
     view?: ArticleView
+    target?: HTMLAttributeAnchorTarget
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -22,12 +24,18 @@ const getSkeletons = (view: ArticleView) =>
         ))
 
 export const ArticleList = (props: ArticleListProps) => {
-    const { className, articles, view = ArticleView.SMALL, isLoading } = props
+    const { className, articles, view = ArticleView.SMALL, isLoading, target } = props
 
     const { t } = useTranslation()
 
     const renderArticle = (article: Article) => (
-        <ArticleListItem article={article} view={view} className={styles.card} key={article.id} />
+        <ArticleListItem
+            article={article}
+            view={view}
+            className={styles.card}
+            key={article.id}
+            target={target}
+        />
     )
 
     if (!isLoading && !articles.length) {
