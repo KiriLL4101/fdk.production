@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { classNames } from 'shared/lib/className'
-import { Button } from 'shared/ui'
-import { ButtonTheme } from 'shared/ui/Button/Button'
+import { AppLink, Button, Text, TextTheme, ButtonTheme, AppLinkVariant } from 'shared/ui'
+import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { LoginModal } from 'features/AuthByUserName'
 import { getUserAuthData, userActions } from 'entities/User'
 
@@ -37,11 +37,16 @@ export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
     if (authData) {
         return (
             <div className={classNames(styles.Navbar, {}, [className])}>
+                <Text
+                    className={styles.appName}
+                    title={t('Up Course')}
+                    theme={TextTheme.INVERTED}
+                />
+                <AppLink to={RoutePath.article_create} variant={AppLinkVariant.SECONDARY}>
+                    {t('Создать статью')}
+                </AppLink>
                 <div className={styles.links}>
-                    <Button
-                        theme={ButtonTheme.CLEAR_INVERTED}
-                        onClick={onLogout}
-                    >
+                    <Button theme={ButtonTheme.CLEAR_INVERTED} onClick={onLogout}>
                         {t('Выйти')}
                     </Button>
                 </div>
@@ -52,10 +57,7 @@ export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
     return (
         <div className={classNames(styles.Navbar, {}, [className])}>
             <div className={styles.links}>
-                <Button
-                    theme={ButtonTheme.CLEAR_INVERTED}
-                    onClick={onShowModal}
-                >
+                <Button theme={ButtonTheme.CLEAR_INVERTED} onClick={onShowModal}>
                     {t('Войти')}
                 </Button>
             </div>

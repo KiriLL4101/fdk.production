@@ -1,24 +1,29 @@
-import { ReactNode, memo } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import { ReactNode, memo } from 'react'
+import { Link, LinkProps } from 'react-router-dom'
 
-import { classNames } from 'shared/lib/className';
+import { classNames } from 'shared/lib/className'
 
-import styles from './AppLink.module.scss';
+import styles from './AppLink.module.scss'
 
 export enum AppLinkVariant {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary'
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary',
+    RED = 'red',
 }
 
 interface AppLinkProps extends LinkProps {
-  className?: string
-  variant?: AppLinkVariant
-  children?: ReactNode
+    className?: string
+    variant?: AppLinkVariant
+    children?: ReactNode
 }
 
 export const AppLink = memo(
     ({
-        className = '', children, to, variant = AppLinkVariant.PRIMARY, ...props
+        className = '',
+        children,
+        to,
+        variant = AppLinkVariant.PRIMARY,
+        ...props
     }: AppLinkProps) => (
         <Link
             {...props}
@@ -27,5 +32,5 @@ export const AppLink = memo(
         >
             {children}
         </Link>
-    ),
-);
+    )
+)
