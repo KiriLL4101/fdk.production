@@ -8,7 +8,7 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-import { Button, ButtonTheme, Input } from 'shared/ui'
+import { Button, ButtonTheme, HStack, Input } from 'shared/ui'
 import {
     addCommentFormActions,
     addCommentFormReducer,
@@ -50,17 +50,21 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(styles.AddCommentForm, {}, [className])}>
+            <HStack
+                justify='between'
+                max
+                className={classNames(styles.AddCommentForm, {}, [className])}
+            >
                 <Input
                     className={styles.input}
-                    placeholder="Введите текст комментария"
+                    placeholder='Введите текст комментария'
                     value={text}
                     onChange={onCommentTextChange}
                 />
                 <Button theme={ButtonTheme.OUTLINE} onClick={onSendHandler}>
                     {t('Отправить')}
                 </Button>
-            </div>
+            </HStack>
         </DynamicModuleLoader>
     )
 })

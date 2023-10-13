@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { Button, ButtonTheme, Text } from 'shared/ui'
+import { Button, ButtonTheme, HStack, Text } from 'shared/ui'
 import {
     getProfileData,
     getProfileReadonly,
@@ -11,8 +11,6 @@ import {
 } from 'entities/Profile'
 import { getUserAuthData } from 'entities/User'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-
-import styles from './ProfileHeader.module.scss'
 
 export const ProfileHeader = () => {
     const { t } = useTranslation('profile')
@@ -38,38 +36,26 @@ export const ProfileHeader = () => {
     }, [dispatch])
 
     return (
-        <div className={styles.header}>
+        <HStack max justify='between'>
             <Text title={t('Профиль')} />
             {canEdit && (
-                <div className={styles.btnsWrapper}>
+                <div>
                     {readonly ? (
-                        <Button
-                            className={styles.editBtn}
-                            theme={ButtonTheme.OUTLINE}
-                            onClick={onEditProfile}
-                        >
+                        <Button theme={ButtonTheme.OUTLINE} onClick={onEditProfile}>
                             {t('Редактировать')}
                         </Button>
                     ) : (
-                        <>
-                            <Button
-                                className={styles.editBtn}
-                                theme={ButtonTheme.OUTLINE_RED}
-                                onClick={onCancelEditProfile}
-                            >
+                        <HStack gap='8'>
+                            <Button theme={ButtonTheme.OUTLINE_RED} onClick={onCancelEditProfile}>
                                 {t('Отменить')}
                             </Button>
-                            <Button
-                                className={styles.saveBtn}
-                                theme={ButtonTheme.OUTLINE}
-                                onClick={onSaveProfile}
-                            >
+                            <Button theme={ButtonTheme.OUTLINE} onClick={onSaveProfile}>
                                 {t('Сохранить')}
                             </Button>
-                        </>
+                        </HStack>
                     )}
                 </div>
             )}
-        </div>
+        </HStack>
     )
 }

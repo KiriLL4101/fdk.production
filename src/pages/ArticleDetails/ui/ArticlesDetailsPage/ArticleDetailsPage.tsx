@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 import { ArticleDetails, ArticleList } from 'entities/Article'
 import { CommentList } from 'entities/Comment'
-import { Text, TextSize } from 'shared/ui'
+import { Text, TextSize, VStack } from 'shared/ui'
 
 import {
     DynamicModuleLoader,
@@ -59,18 +59,28 @@ const ArticleDetailsPage = () => {
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={reducers}>
             <Page className={styles.articleDetailsPage}>
-                <ArticleDetailsPageHeader />
-                <ArticleDetails articleId={id} />
-                <Text size={TextSize.L} className={styles.commentTitle} title={t('Рекомендуем')} />
-                <ArticleList
-                    articles={recommendations}
-                    isLoading={recommendationsIsLoading}
-                    className={styles.recommendations}
-                    target="_blank"
-                />
-                <Text size={TextSize.L} className={styles.commentTitle} title={t('Комментарии')} />
-                <AddCommentForm onSendComment={onSendComment} />
-                <CommentList isLoading={commentsIsLoading} comments={comments} />
+                <VStack gap='16' max>
+                    <ArticleDetailsPageHeader />
+                    <ArticleDetails articleId={id} />
+                    <Text
+                        size={TextSize.L}
+                        className={styles.commentTitle}
+                        title={t('Рекомендуем')}
+                    />
+                    <ArticleList
+                        articles={recommendations}
+                        isLoading={recommendationsIsLoading}
+                        className={styles.recommendations}
+                        target='_blank'
+                    />
+                    <Text
+                        size={TextSize.L}
+                        className={styles.commentTitle}
+                        title={t('Комментарии')}
+                    />
+                    <AddCommentForm onSendComment={onSendComment} />
+                    <CommentList isLoading={commentsIsLoading} comments={comments} />
+                </VStack>
             </Page>
         </DynamicModuleLoader>
     )

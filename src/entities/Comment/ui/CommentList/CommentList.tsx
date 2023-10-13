@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { Text } from 'shared/ui'
+import { Text, VStack } from 'shared/ui'
 import { CommentCard } from '../CommentCard/CommentCard'
 import { Comment } from '../../model/types/comment'
-
-import styles from './CommentList.module.scss'
 
 interface CommentListProps {
     comments?: Comment[]
@@ -14,8 +12,18 @@ export const CommentList = (props: CommentListProps) => {
     const { comments, isLoading } = props
     const { t } = useTranslation()
 
+    if (isLoading) {
+        return (
+            <VStack gap='16' max>
+                <CommentCard isLoading />
+                <CommentCard isLoading />
+                <CommentCard isLoading />
+            </VStack>
+        )
+    }
+
     return (
-        <div className={styles.list}>
+        <VStack gap='16' max>
             {comments?.length ? (
                 comments.map((comment) => (
                     <CommentCard key={comment.id} comment={comment} isLoading={isLoading} />
@@ -23,6 +31,6 @@ export const CommentList = (props: CommentListProps) => {
             ) : (
                 <Text text={t('Комментарии отсутствуют')} />
             )}
-        </div>
+        </VStack>
     )
 }

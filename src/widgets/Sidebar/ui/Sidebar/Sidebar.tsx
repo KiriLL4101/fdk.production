@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Button, ThemeSwitcher, LangSwitcher } from 'shared/ui'
+import { Button, ThemeSwitcher, LangSwitcher, VStack } from 'shared/ui'
 import { classNames } from 'shared/lib/className'
 import { ButtonSize, ButtonTheme } from 'shared/ui/Button/Button'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
@@ -22,18 +22,24 @@ export const Sidebar = ({ className = '' }: SidebarProps) => {
         setCollapsed((prev) => !prev)
     }
 
+    const itemsList = useMemo(
+        () =>
+            sidebarItemsList.map((item) => (
+                <SidebarItem item={item} collapsed={collapsed} key={item.path} />
+            )),
+        [collapsed, sidebarItemsList]
+    )
+
     return (
         <div
-            data-testid="sidebar"
+            data-testid='sidebar'
             className={classNames(styles.Sidebar, { [styles.collapsed]: collapsed }, [className])}
         >
-            <div className={styles.items}>
-                {sidebarItemsList.map((item) => (
-                    <SidebarItem key={item.path} item={item} collapsed={collapsed} />
-                ))}
-            </div>
+            <VStack role='navigation' gap='8' className={styles.items}>
+                {itemsList}
+            </VStack>
             <Button
-                data-testid="sidebar-toggle"
+                data-testid='sidebar-toggle'
                 onClick={onToggle}
                 className={styles.collapseBtn}
                 theme={ButtonTheme.BACKGROUND_INVERTED}

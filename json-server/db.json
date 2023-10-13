@@ -1109,6 +1109,18 @@
       "userId": 1,
       "text": "Комментарий про котлин",
       "id": 11
+    },
+    {
+      "articleId": 14,
+      "userId": 1,
+      "text": "123",
+      "id": 12
+    },
+    {
+      "articleId": 14,
+      "userId": 1,
+      "text": "311",
+      "id": 13
     }
   ],
   "users": [

@@ -8,7 +8,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { fetchArticleById } from 'entities/Article/model/services/fetchArticleById/fetchArticleById'
-import { Avatar, Icon, Skeleton, Text, TextAlign, TextSize } from 'shared/ui'
+import { Avatar, HStack, Icon, Skeleton, Text, TextAlign, TextSize, VStack } from 'shared/ui'
 import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg'
 import EyeIcon from 'shared/assets/icons/eye-20-20.svg'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect'
@@ -73,11 +73,11 @@ export const ArticleDetails = ({ articleId }: ArticleDetailsProps) => {
     if (isLoading) {
         content = (
             <>
-                <Skeleton className={styles.avatar} width={200} height={200} border="50%" />
+                <Skeleton className={styles.avatar} width={200} height={200} border='50%' />
                 <Skeleton className={styles.title} width={300} height={32} />
                 <Skeleton className={styles.skeleton} width={600} height={24} />
-                <Skeleton className={styles.skeleton} width="100%" height={200} />
-                <Skeleton className={styles.skeleton} width="100%" height={200} />
+                <Skeleton className={styles.skeleton} width='100%' height={200} />
+                <Skeleton className={styles.skeleton} width='100%' height={200} />
             </>
         )
     } else if (error) {
@@ -87,23 +87,25 @@ export const ArticleDetails = ({ articleId }: ArticleDetailsProps) => {
     } else if (article) {
         content = (
             <>
-                <div className={styles.avatarWrapper}>
+                <HStack justify='center' max className={styles.avatarWrapper}>
                     <Avatar src={article?.img} size={200} />
-                </div>
-                <Text
-                    className={styles.title}
-                    title={article?.title}
-                    text={article?.subtitle}
-                    size={TextSize.L}
-                />
-                <div className={styles.articleInfo}>
-                    <Icon Svg={EyeIcon} />
-                    <Text text={`${article.views}`} />
-                </div>
-                <div className={styles.articleInfo}>
-                    <Icon Svg={CalendarIcon} />
-                    <Text text={article.createdAt} />
-                </div>
+                </HStack>
+                <VStack gap='4' max>
+                    <Text
+                        className={styles.title}
+                        title={article?.title}
+                        text={article?.subtitle}
+                        size={TextSize.L}
+                    />
+                    <HStack gap='8' className={styles.articleInfo}>
+                        <Icon Svg={EyeIcon} />
+                        <Text text={`${article.views}`} />
+                    </HStack>
+                    <HStack gap='8' className={styles.articleInfo}>
+                        <Icon Svg={CalendarIcon} />
+                        <Text text={article.createdAt} />
+                    </HStack>
+                </VStack>
                 {article?.blocks.map(renderBlocks)}
             </>
         )
@@ -111,7 +113,9 @@ export const ArticleDetails = ({ articleId }: ArticleDetailsProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={styles.articleDetails}>{content}</div>
+            <VStack gap='16' className={styles.articleDetails}>
+                {content}
+            </VStack>
         </DynamicModuleLoader>
     )
 }
