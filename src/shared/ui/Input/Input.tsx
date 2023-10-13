@@ -87,7 +87,7 @@ export const Input = memo((props: InputProps) => {
                     onFocus={onFocus}
                     onSelect={onSelect}
                     readOnly={readOnly}
-                    data-testid="custom-input"
+                    data-testid='custom-input'
                     {...otherProps}
                 />
                 {isCaretVisible && (
