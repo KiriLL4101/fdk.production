@@ -86,59 +86,47 @@ export const ProfileCard = (props: ProfileCardProps) => {
             <Input
                 value={data?.firstName}
                 label={t('Ваше имя')}
-                className={styles.input}
                 readOnly={readonly}
                 onChange={onChangeFirstName}
             />
             <Input
                 value={data?.lastName}
                 label={t('Ваша фамилия')}
-                className={styles.input}
                 readOnly={readonly}
                 onChange={onChangeLastName}
             />
             <Input
                 value={data?.age}
                 label={t('Ваш возраст')}
-                className={styles.input}
                 readOnly={readonly}
                 onChange={onChangeAge}
             />
             <Input
                 value={data?.city}
                 label={t('Город')}
-                className={styles.input}
                 readOnly={readonly}
                 onChange={onChangeCity}
             />
             <Input
                 value={data?.username}
                 label={t('Введите имя пользователя')}
-                className={styles.input}
                 readOnly={readonly}
                 onChange={onChangeUsername}
             />
             <Input
                 value={data?.avatar}
                 label={t('Введите ссылку на аватар')}
-                className={styles.input}
                 readOnly={readonly}
                 onChange={onChangeAvatar}
             />
 
             <CurrencySelect
                 value={data?.currency}
-                className={styles.input}
                 readonly={readonly}
                 onChange={onChangeCurrency}
             />
 
-            <CountrySelect
-                value={data?.country}
-                className={styles.input}
-                readonly={readonly}
-                onChange={onChangeCountry}
-            />
+            <CountrySelect value={data?.country} readonly={readonly} onChange={onChangeCountry} />
         </VStack>
     )
 }

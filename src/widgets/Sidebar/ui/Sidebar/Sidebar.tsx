@@ -31,7 +31,7 @@ export const Sidebar = ({ className = '' }: SidebarProps) => {
     )
 
     return (
-        <div
+        <aside
             data-testid='sidebar'
             className={classNames(styles.Sidebar, { [styles.collapsed]: collapsed }, [className])}
         >
@@ -52,6 +52,6 @@ export const Sidebar = ({ className = '' }: SidebarProps) => {
                 <ThemeSwitcher />
                 <LangSwitcher short={collapsed} />
             </div>
-        </div>
+        </aside>
     )
 }
