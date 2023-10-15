@@ -3,7 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { classNames } from 'shared/lib/className'
-import { AppLink, Button, Text, TextTheme, ButtonTheme, AppLinkVariant } from 'shared/ui'
+import {
+    AppLink,
+    Button,
+    Text,
+    TextTheme,
+    ButtonTheme,
+    AppLinkVariant,
+    Avatar,
+    Dropdown,
+} from 'shared/ui'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { LoginModal } from 'features/AuthByUserName'
 import { getUserAuthData, userActions } from 'entities/User'
@@ -36,7 +45,7 @@ export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
 
     if (authData) {
         return (
-            <div className={classNames(styles.Navbar, {}, [className])}>
+            <div className={classNames(styles.navbar, {}, [className])}>
                 <Text
                     className={styles.appName}
                     title={t('Up Course')}
@@ -45,17 +54,27 @@ export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
                 <AppLink to={RoutePath.article_create} variant={AppLinkVariant.SECONDARY}>
                     {t('Создать статью')}
                 </AppLink>
-                <div className={styles.links}>
-                    <Button theme={ButtonTheme.CLEAR_INVERTED} onClick={onLogout}>
-                        {t('Выйти')}
-                    </Button>
-                </div>
+                <Dropdown
+                    direction='bottom left'
+                    className={styles.dropdown}
+                    items={[
+                        {
+                            content: t('Профиль'),
+                            href: RoutePath.profile + authData.id,
+                        },
+                        {
+                            content: t('Выйти'),
+                            onClick: onLogout,
+                        },
+                    ]}
+                    trigger={<Avatar size={30} src={authData.avatar} />}
+                />
             </div>
         )
     }
 
     return (
-        <div className={classNames(styles.Navbar, {}, [className])}>
+        <div className={classNames(styles.navbar, {}, [className])}>
             <div className={styles.links}>
                 <Button theme={ButtonTheme.CLEAR_INVERTED} onClick={onShowModal}>
                     {t('Войти')}
