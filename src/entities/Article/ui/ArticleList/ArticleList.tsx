@@ -14,6 +14,7 @@ interface ArticleListProps {
     isLoading?: boolean
     view?: ArticleView
     target?: HTMLAttributeAnchorTarget
+    virtualized?: boolean
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -24,7 +25,14 @@ const getSkeletons = (view: ArticleView) =>
         ))
 
 export const ArticleList = (props: ArticleListProps) => {
-    const { className, articles, view = ArticleView.SMALL, isLoading, target } = props
+    const {
+        className,
+        articles,
+        view = ArticleView.SMALL,
+        isLoading,
+        target,
+        virtualized = true,
+    } = props
 
     const { t } = useTranslation()
 

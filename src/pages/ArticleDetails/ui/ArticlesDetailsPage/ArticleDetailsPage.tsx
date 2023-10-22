@@ -1,11 +1,8 @@
-import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
-import { ArticleDetails, ArticleList } from 'entities/Article'
-import { CommentList } from 'entities/Comment'
-import { Text, TextSize, VStack } from 'shared/ui'
+import { ArticleDetails } from 'entities/Article'
+import { VStack } from 'shared/ui'
 
 import {
     DynamicModuleLoader,
@@ -13,19 +10,15 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect'
-import { AddCommentForm } from 'features/addCommentsForm'
 import { Page } from 'widgets/Page/Page'
-import { getArticleComments } from '../../model/slices/articleDetailsCommentsSlice'
+import { ArticleRecommendationsList } from 'features/articleRecommendationsList'
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
-import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
-import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle'
-
-import styles from './ArticleDetailsPage.module.scss'
 import { articleDetailsPageReducer } from '../../model/slices'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader'
-import { getArticleRecommendations } from '../../model/slices/articleDetailsPageRecommendationsSlice'
-import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations'
 import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations'
+
+import styles from './ArticleDetailsPage.module.scss'
+import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments'
 
 const reducers: ReducersList = {
     articleDetailsPage: articleDetailsPageReducer,
@@ -36,22 +29,12 @@ const ArticleDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
 
     const dispatch = useAppDispatch()
-    const comments = useSelector(getArticleComments.selectAll)
-    const commentsIsLoading = useSelector(getArticleCommentsIsLoading)
-    const recommendations = useSelector(getArticleRecommendations.selectAll)
-    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading)
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id))
         dispatch(fetchArticleRecommendations())
     })
 
-    const onSendComment = useCallback(
-        (text: string) => {
-            dispatch(addCommentForArticle(text))
-        },
-        [dispatch]
-    )
     if (!id) {
         return <Page className={styles.articleDetailsPage}>{t('Статья не найдена')}</Page>
     }
@@ -62,24 +45,8 @@ const ArticleDetailsPage = () => {
                 <VStack gap='16' max>
                     <ArticleDetailsPageHeader />
                     <ArticleDetails articleId={id} />
-                    <Text
-                        size={TextSize.L}
-                        className={styles.commentTitle}
-                        title={t('Рекомендуем')}
-                    />
-                    <ArticleList
-                        articles={recommendations}
-                        isLoading={recommendationsIsLoading}
-                        className={styles.recommendations}
-                        target='_blank'
-                    />
-                    <Text
-                        size={TextSize.L}
-                        className={styles.commentTitle}
-                        title={t('Комментарии')}
-                    />
-                    <AddCommentForm onSendComment={onSendComment} />
-                    <CommentList isLoading={commentsIsLoading} comments={comments} />
+                    <ArticleRecommendationsList />
+                    <ArticleDetailsComments id={id} />
                 </VStack>
             </Page>
         </DynamicModuleLoader>

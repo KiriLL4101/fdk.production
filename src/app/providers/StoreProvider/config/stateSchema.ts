@@ -8,7 +8,6 @@ import {
 import { AxiosInstance } from 'axios'
 
 import { CounterSchema } from 'entities/Counter'
-import { ProfileSchema } from 'entities/Profile'
 import { UserSchema } from 'entities/User'
 import { LoginSchema } from 'features/AuthByUserName'
 import { ArticleDetailsSchema } from 'entities/Article'
@@ -16,11 +15,14 @@ import { ArticlesPageSchema } from 'pages/Articles'
 import { AddCommentFormSchema } from 'features/addCommentsForm'
 import { RestorationScrollSchema } from 'features/restorationScroll'
 import { ArticleDetailsPageSchema } from 'pages/ArticleDetails/model/types'
+import { ProfileSchema } from 'features/editableProfileCard'
+import { rtkApi } from 'shared/api/rtkApi'
 
 export interface StateSchema {
     counter: CounterSchema
     user: UserSchema
     restorationScroll: RestorationScrollSchema
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
     // async reducers
     loginForm?: LoginSchema
