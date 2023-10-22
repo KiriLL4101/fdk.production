@@ -46,6 +46,19 @@ export default {
         'entities/(.*)$': '<rootDir>src/entities/$1',
     },
 
+    reporters: [
+        'default',
+        [
+            './node_modules/jest-html-reporter',
+            {
+                publicPath: '<rootDir>/reports/unit',
+                filename: 'report.html',
+                openReport: true,
+                inlineSource: true,
+            },
+        ],
+    ],
+
     // All imported modules in your tests should be mocked automatically
     // automock: false,
 
