@@ -15,7 +15,7 @@ import {
 } from 'shared/ui'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
 import { LoginModal } from 'features/AuthByUserName'
-import { getUserAuthData, userActions } from 'entities/User'
+import { getUserAuthData, isUserAdmin, isUserManager, userActions } from 'entities/User'
 
 import styles from './Navbar.module.scss'
 
@@ -29,6 +29,9 @@ export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
     const [isAuthModal, setIsAuthModal] = useState(false)
 
     const authData = useSelector(getUserAuthData)
+    const isAdmin = useSelector(isUserAdmin)
+    const isManager = useSelector(isUserManager)
+
     const dispatch = useDispatch()
 
     const onCloseModal = useCallback(() => {
@@ -42,6 +45,8 @@ export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
     const onLogout = useCallback(() => {
         dispatch(userActions.logout())
     }, [dispatch])
+
+    const isAdminPanelAvailable = isAdmin || isManager
 
     if (authData) {
         return (
@@ -58,6 +63,14 @@ export const Navbar: FC<NavbarProps> = ({ className = '' }) => {
                     direction='bottom left'
                     className={styles.dropdown}
                     items={[
+                        ...(isAdminPanelAvailable
+                            ? [
+                                {
+                                    content: t('Админка'),
+                                    href: RoutePath.admin_panel,
+                                },
+                            ]
+                            : []),
                         {
                             content: t('Профиль'),
                             href: RoutePath.profile + authData.id,
