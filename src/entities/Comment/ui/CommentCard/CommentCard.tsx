@@ -12,7 +12,7 @@ interface CommentCardProps {
 export const CommentCard = ({ comment, isLoading }: CommentCardProps) => {
     if (isLoading) {
         return (
-            <VStack max className={styles.commentCard}>
+            <VStack gap='8' max className={styles.commentCard}>
                 <div className={styles.header}>
                     <Skeleton width={30} height={30} border='50%' />
                     <Skeleton height={16} width={100} className={styles.username} />
