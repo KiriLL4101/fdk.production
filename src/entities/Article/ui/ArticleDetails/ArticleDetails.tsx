@@ -31,7 +31,7 @@ const reducers: ReducersList = {
 }
 
 interface ArticleDetailsProps {
-    articleId: string
+    articleId: string,
 }
 
 export const ArticleDetails = ({ articleId }: ArticleDetailsProps) => {

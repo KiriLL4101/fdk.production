@@ -1,4 +1,4 @@
-export { RestorationScrollSchema } from './model/types/restorationScrollSchema'
+export type { RestorationScrollSchema } from './model/types/restorationScrollSchema'
 export {
     restorationScrollReducer,
     restorationScrollActions,

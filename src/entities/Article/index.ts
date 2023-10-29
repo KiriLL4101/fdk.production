@@ -5,5 +5,6 @@ export { ArticleViewSelector } from './ui/ArticleViewSelector/ArticleViewSelecto
 export { ArticleSortSelector } from './ui/ArticleSortSelector/ArticleSortSelector'
 export { ArticleTypeTabs } from './ui/ArticleTypeTabs/ArticleTypeTabs'
 
-export { ArticleView, ArticleType, Article, ArticleSortField } from './model/types/article'
+export { ArticleView, ArticleType, ArticleSortField } from './model/types/article'
+export type { Article } from './model/types/article'
 export { getArticleDetailsData } from './model/selectors/articleDetails'
