@@ -1,86 +1,48 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
-import { CSSTransition } from 'react-transition-group'
+import { FC, ReactNode } from 'react'
 
 import { classNames } from 'shared/lib/className'
+import { useModal } from 'shared/lib/hooks/useModal'
+import { useTheme } from 'app/providers/ThemeProvider'
 import { Portal } from '../Portal/Portal'
 
 import styles from './Modal.module.scss'
+import { Overlay } from '../Overlay/Overlay'
 
 interface ModalProps {
     children: ReactNode
-    isOpen: boolean
-    onClose: () => void
+    isOpen?: boolean
+    onClose?: () => void
     className?: string
+    lazy?: boolean
 }
 
 const ANIMATION_DELAY = 300
 
-const contentAnimation = {
-    enter: styles.contentEnter,
-    enterActive: styles.contentEnterActive,
-    exit: styles.contentExit,
-    exitActive: styles.contentExitActive
-}
-
 export const Modal: FC<ModalProps> = (props) => {
-    const { className = '', children, isOpen, onClose } = props
+    const { className = '', children, isOpen, lazy, onClose } = props
 
-    const [mounted, setMounted] = useState(false)
-    const [animationIn, setAnimationIn] = useState(false)
-    const contentRef = useRef<HTMLDivElement>(null)
+    const { close, isClosing, isMounted } = useModal({
+        animationDelay: ANIMATION_DELAY,
+        onClose,
+        isOpen,
+    })
 
-    useEffect(() => {
-        setAnimationIn(isOpen)
-    }, [isOpen])
+    const { theme } = useTheme()
 
-    useEffect(() => {
-        if (isOpen && !mounted) {
-            setMounted(true)
-        } else if (!isOpen && mounted) {
-            setTimeout(() => {
-                setMounted(false)
-            }, ANIMATION_DELAY)
-        }
-    }, [isOpen, mounted])
+    const mods = {
+        [styles.opened]: isOpen,
+        [styles.isClosing]: isClosing,
+    }
 
-    const onKeyDown = useCallback(
-        (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                onClose()
-            }
-        },
-        [onClose]
-    )
-
-    useEffect(() => {
-        if (isOpen) {
-            window.addEventListener('keydown', onKeyDown)
-        }
-
-        return () => {
-            window.removeEventListener('keydown', onKeyDown)
-        }
-    }, [isOpen, onKeyDown])
-
-    if (!mounted) return null
+    if (lazy && !isMounted) {
+        return null
+    }
 
     return (
         <Portal>
-            <div className={classNames(styles.modal, {}, [className])}>
-                <div className={styles.overlay} onClick={onClose} />
-                <CSSTransition
-                    in={animationIn}
-                    nodeRef={contentRef}
-                    timeout={ANIMATION_DELAY}
-                    mountOnEnter
-                    unmountOnExit
-                    classNames={contentAnimation}
-                >
-                    <div ref={contentRef} className={styles.content}>
-                        {children}
-                    </div>
-                </CSSTransition>
+            <div className={classNames(styles.modal, mods, [className, theme, 'app_modal'])}>
+                <Overlay onClick={close} />
+                <div className={styles.content}>{children}</div>
             </div>
         </Portal>
     )
