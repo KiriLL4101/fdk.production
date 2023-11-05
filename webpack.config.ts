@@ -14,7 +14,7 @@ export default (env: BuildEnv) => {
     }
 
     const mode = env.mode || 'development'
-    const POST = env.port || 3000
+    const PORT = env.port || 3000
     const apiUrl = env.apiUrl || 'http://localhost:8000'
 
     const isDev = mode === 'development'
@@ -23,7 +23,7 @@ export default (env: BuildEnv) => {
         mode,
         paths,
         isDev,
-        port: POST,
+        port: PORT,
         apiUrl,
         project: 'frontend',
     })

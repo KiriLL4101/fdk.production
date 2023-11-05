@@ -1,12 +1,15 @@
 import { Fragment, ReactNode } from 'react'
 import { Listbox as HListBox } from '@headlessui/react'
+import { DefaultTFuncReturn } from 'i18next'
+
 import { classNames } from 'shared/lib/className'
 import { DropdownDirection } from 'shared/types/ui'
-import { DefaultTFuncReturn } from 'i18next'
-import { HStack } from '../Stack'
-import { Button } from '../Button/Button'
+import { HStack } from '../../../Stack'
+import { Button } from '../../../Button/Button'
+import { mapDirectionClass } from '../../styles/consts'
 
 import styles from './ListBox.module.scss'
+import popupCls from '../../styles/popup.module.scss';
 
 export interface ListBoxItem {
     value: string
@@ -23,13 +26,6 @@ interface ListBoxProps {
     readonly?: boolean
     direction?: DropdownDirection
     label?: string | DefaultTFuncReturn
-}
-
-const mapDirectionClass: Record<DropdownDirection, string> = {
-    'bottom left': styles.optionsBottomLeft,
-    'bottom right': styles.optionsBottomRight,
-    'top right': styles.optionsTopRight,
-    'top left': styles.optionsTopLeft,
 }
 
 export function ListBox(props: ListBoxProps) {
@@ -52,7 +48,7 @@ export function ListBox(props: ListBoxProps) {
             <HListBox
                 disabled={readonly}
                 as='div'
-                className={classNames(styles.listBox, {}, [className])}
+                className={classNames(styles.listBox, {}, [className, popupCls.popup])}
                 value={value}
                 onChange={onChange}
             >
@@ -70,8 +66,8 @@ export function ListBox(props: ListBoxProps) {
                             {({ active, selected }) => (
                                 <li
                                     className={classNames(styles.item, {
-                                        [styles.active]: active,
-                                        [styles.disabled]: item.disabled,
+                                        [popupCls.active]: active,
+                                        [popupCls.disabled]: item.disabled,
                                     })}
                                 >
                                     {selected && '!!!'}
