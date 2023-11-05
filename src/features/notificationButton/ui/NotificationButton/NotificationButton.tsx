@@ -1,9 +1,10 @@
-import { memo } from 'react'
+import { memo, useCallback, useState } from 'react'
 import NotificationIcon from 'shared/assets/icons/notification-20-20.svg'
 import { NotificationList } from 'entities/Notification'
-import { Button, ButtonTheme, Icon, Popover } from 'shared/ui'
+import { Button, ButtonTheme, Drawer, Icon, Popover } from 'shared/ui'
 import { classNames } from 'shared/lib/className'
 
+import { BrowserView, MobileView } from 'react-device-detect'
 import styles from './NotificationButton.module.scss'
 
 interface NotificationButtonProps {
@@ -12,20 +13,39 @@ interface NotificationButtonProps {
 
 export const NotificationButton = memo((props: NotificationButtonProps) => {
     const { className } = props
+    const [isOpen, setIsOpen] = useState(false)
+
+    const onOpenDrawer = useCallback(() => {
+        setIsOpen(true)
+    }, [])
+
+    const onCloseDrawer = useCallback(() => {
+        setIsOpen(false)
+    }, [])
 
     const trigger = (
-        <Button theme={ButtonTheme.CLEAR}>
+        <Button onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
             <Icon Svg={NotificationIcon} inverted />
         </Button>
     )
 
     return (
-        <Popover
-            className={classNames(styles.NotificationButton, {}, [className])}
-            direction='bottom left'
-            trigger={trigger}
-        >
-            <NotificationList className={styles.notifications} />
-        </Popover>
+        <>
+            <BrowserView>
+                <Popover
+                    className={classNames(styles.NotificationButton, {}, [className])}
+                    direction='bottom left'
+                    trigger={trigger}
+                >
+                    <NotificationList className={styles.notifications} />
+                </Popover>
+            </BrowserView>
+            <MobileView>
+                {trigger}
+                <Drawer isOpen={isOpen} onClose={onCloseDrawer}>
+                    <NotificationList />
+                </Drawer>
+            </MobileView>
+        </>
     )
 })
