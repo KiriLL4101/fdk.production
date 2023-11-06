@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { Loader, Modal } from 'shared/ui'
+import { Loader, Modal } from '@/shared/ui'
 import LoginForm from '../LoginForm/LoginForm'
 
 import styles from './LoginModal.module.scss'

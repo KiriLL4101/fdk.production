@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import { ArticleDetails } from 'entities/Article'
-import { VStack } from 'shared/ui'
+import { ArticleDetails } from '@/entities/Article'
+import { VStack } from '@/shared/ui'
 
 import {
     DynamicModuleLoader,
     ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect'
-import { Page } from 'widgets/Page/Page'
-import { ArticleRecommendationsList } from 'features/articleRecommendationsList'
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect'
+import { Page } from '@/widgets/Page/Page'
+import { ArticleRecommendationsList } from '@/features/articleRecommendationsList'
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { articleDetailsPageReducer } from '../../model/slices'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader'

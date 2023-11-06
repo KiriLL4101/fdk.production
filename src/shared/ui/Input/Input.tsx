@@ -9,7 +9,7 @@ import {
 } from 'react'
 import { type DefaultTFuncReturn } from 'i18next'
 
-import { classNames } from 'shared/lib/className'
+import { classNames } from '@/shared/lib/className'
 
 import styles from './Input.module.scss'
 

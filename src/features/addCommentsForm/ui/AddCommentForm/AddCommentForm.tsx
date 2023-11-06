@@ -2,13 +2,13 @@ import { ChangeEvent, memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { classNames } from 'shared/lib/className'
+import { classNames } from '@/shared/lib/className'
 import {
     DynamicModuleLoader,
     ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
-import { Button, ButtonTheme, HStack, Input } from 'shared/ui'
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
+import { Button, ButtonTheme, HStack, Input } from '@/shared/ui'
 import {
     addCommentFormActions,
     addCommentFormReducer,

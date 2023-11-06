@@ -1,7 +1,7 @@
 import { ChangeEvent, useMemo } from 'react'
 import { DefaultTFuncReturn } from 'i18next'
 
-import { classNames } from 'shared/lib/className'
+import { classNames } from '@/shared/lib/className'
 
 import styles from './Select.module.scss'
 

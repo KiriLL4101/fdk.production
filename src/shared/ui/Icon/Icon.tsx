@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { classNames } from 'shared/lib/className'
+import { classNames } from '@/shared/lib/className'
 import cls from './Icon.module.scss'
 
 interface IconProps {

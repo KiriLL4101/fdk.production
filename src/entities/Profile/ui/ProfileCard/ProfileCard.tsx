@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Input, Loader, Text, TextTheme, TextAlign, Avatar, HStack, VStack } from 'shared/ui'
-import { classNames } from 'shared/lib/className'
-import { Currency, CurrencySelect } from 'entities/Currency'
-import { Country, CountrySelect } from 'entities/Country'
+import { Input, Loader, Text, TextTheme, TextAlign, Avatar, HStack, VStack } from '@/shared/ui'
+import { classNames } from '@/shared/lib/className'
+import { Currency, CurrencySelect } from '@/entities/Currency'
+import { Country, CountrySelect } from '@/entities/Country'
 import { Profile } from '../../model/types/profile'
 
 import styles from './ProfileCard.module.scss'

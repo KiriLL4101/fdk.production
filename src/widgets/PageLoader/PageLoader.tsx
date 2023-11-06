@@ -1,5 +1,5 @@
-import { classNames } from 'shared/lib/className'
-import { Loader } from 'shared/ui'
+import { classNames } from '@/shared/lib/className'
+import { Loader } from '@/shared/ui'
 
 import styles from './PageLoader.module.scss'
 

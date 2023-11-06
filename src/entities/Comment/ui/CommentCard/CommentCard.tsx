@@ -1,5 +1,5 @@
-import { AppLink, Avatar, Skeleton, Text, VStack } from 'shared/ui'
-import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import { AppLink, Avatar, Skeleton, Text, VStack } from '@/shared/ui'
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig'
 import { Comment } from '../../model/types/comment'
 
 import styles from './CommentCard.module.scss'

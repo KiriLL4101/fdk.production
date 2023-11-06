@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 import { useSelector } from 'react-redux'
 import { ChangeEvent, useCallback } from 'react'
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
 import {
     ArticleSortField,
     ArticleSortSelector,
@@ -9,10 +9,10 @@ import {
     ArticleTypeTabs,
     ArticleView,
     ArticleViewSelector,
-} from 'entities/Article'
-import { useDebounce } from 'shared/lib/hooks/useDebounce'
-import { SortOrder } from 'shared/types'
-import { Card, Input } from 'shared/ui'
+} from '@/entities/Article'
+import { useDebounce } from '@/shared/lib/hooks/useDebounce'
+import { SortOrder } from '@/shared/types'
+import { Card, Input } from '@/shared/ui'
 import styles from './ArticlesFilters.module.scss'
 import {
     getArticlesPageOrder,

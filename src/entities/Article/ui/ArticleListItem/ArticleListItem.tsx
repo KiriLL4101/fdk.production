@@ -1,10 +1,10 @@
 import { HTMLAttributeAnchorTarget } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { classNames } from 'shared/lib/className'
-import { AppLink, Avatar, Button, ButtonTheme, Card, Icon, Text } from 'shared/ui'
-import { RoutePath } from 'shared/config/routeConfig/routeConfig'
-import EyeIcon from 'shared/assets/icons/eye-20-20.svg'
+import { classNames } from '@/shared/lib/className'
+import { AppLink, Avatar, Button, ButtonTheme, Card, Icon, Text } from '@/shared/ui'
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig'
+import EyeIcon from '@/shared/assets/icons/eye-20-20.svg'
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent'
 import { Article, ArticleBlockType, ArticleTextBlock, ArticleView } from '../../model/types/article'
 

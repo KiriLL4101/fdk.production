@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Text, VStack } from 'shared/ui'
+import { Text, VStack } from '@/shared/ui'
 import { CommentCard } from '../CommentCard/CommentCard'
 import { Comment } from '../../model/types/comment'
 

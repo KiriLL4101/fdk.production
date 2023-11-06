@@ -7,16 +7,16 @@ import {
 } from '@reduxjs/toolkit'
 import { AxiosInstance } from 'axios'
 
-import { CounterSchema } from 'entities/Counter'
-import { UserSchema } from 'entities/User'
-import { LoginSchema } from 'features/AuthByUserName'
-import { ArticleDetailsSchema } from 'entities/Article'
-import { ArticlesPageSchema } from 'pages/Articles'
-import { AddCommentFormSchema } from 'features/addCommentsForm'
-import { RestorationScrollSchema } from 'features/restorationScroll'
-import { ArticleDetailsPageSchema } from 'pages/ArticleDetails/model/types'
-import { ProfileSchema } from 'features/editableProfileCard'
-import { rtkApi } from 'shared/api/rtkApi'
+import { CounterSchema } from '@/entities/Counter'
+import { UserSchema } from '@/entities/User'
+import { LoginSchema } from '@/features/AuthByUserName'
+import { ArticleDetailsSchema } from '@/entities/Article'
+import { ArticlesPageSchema } from '@/pages/Articles'
+import { AddCommentFormSchema } from '@/features/addCommentsForm'
+import { RestorationScrollSchema } from '@/features/restorationScroll'
+import { ArticleDetailsPageSchema } from '@/pages/ArticleDetails/model/types'
+import { ProfileSchema } from '@/features/editableProfileCard'
+import { rtkApi } from '@/shared/api/rtkApi'
 
 export interface StateSchema {
     counter: CounterSchema

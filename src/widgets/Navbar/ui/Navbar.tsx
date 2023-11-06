@@ -2,14 +2,14 @@ import { FC, useCallback, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-import { classNames } from 'shared/lib/className'
-import { AppLink, Button, Text, TextTheme, ButtonTheme, AppLinkVariant, HStack } from 'shared/ui'
-import { RoutePath } from 'shared/config/routeConfig/routeConfig'
-import { LoginModal } from 'features/AuthByUserName'
-import { getUserAuthData } from 'entities/User'
-import { NotificationButton } from 'features/notificationButton'
+import { classNames } from '@/shared/lib/className'
+import { AppLink, Button, Text, TextTheme, ButtonTheme, AppLinkVariant, HStack } from '@/shared/ui'
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig'
+import { LoginModal } from '@/features/AuthByUserName'
+import { getUserAuthData } from '@/entities/User'
+import { NotificationButton } from '@/features/notificationButton'
 
-import { AvatarDropdown } from 'features/avatarDropdown'
+import { AvatarDropdown } from '@/features/avatarDropdown'
 import styles from './Navbar.module.scss'
 
 interface NavbarProps {

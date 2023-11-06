@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/className'
+import { classNames } from '@/shared/lib/className'
 import styles from './Avatar.module.scss'
 
 interface AvatarProps {

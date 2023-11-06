@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Button, ThemeSwitcher, LangSwitcher, VStack } from 'shared/ui'
-import { classNames } from 'shared/lib/className'
-import { ButtonSize, ButtonTheme } from 'shared/ui/Button/Button'
+import { Button, ThemeSwitcher, LangSwitcher, VStack } from '@/shared/ui'
+import { classNames } from '@/shared/lib/className'
+import { ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
 import { getSidebarItems } from '../../model/selectors/getSidebarItems'
 

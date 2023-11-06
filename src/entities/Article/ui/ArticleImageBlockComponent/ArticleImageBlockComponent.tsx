@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Text, TextAlign } from 'shared/ui'
+import { Text, TextAlign } from '@/shared/ui'
 import cls from './ArticleImageBlockComponent.module.scss'
 import { ArticleImageBlock } from '../../model/types/article'
 

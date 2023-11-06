@@ -3,10 +3,10 @@ import { memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { RoutePath } from 'shared/config/routeConfig/routeConfig'
-import { Button, ButtonTheme, HStack } from 'shared/ui'
-import { getArticleDetailsData } from 'entities/Article/model/selectors/articleDetails'
-import { classNames } from 'shared/lib/className'
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig'
+import { Button, ButtonTheme, HStack } from '@/shared/ui'
+import { getArticleDetailsData } from '@/entities/Article/model/selectors/articleDetails'
+import { classNames } from '@/shared/lib/className'
 import { getCanEditArticle } from '../../model/selectors/article'
 
 interface ArticleDetailsPageHeaderProps {

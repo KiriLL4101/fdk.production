@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react'
 
-import { classNames } from 'shared/lib/className'
-import { useModal } from 'shared/lib/hooks/useModal'
-import { useTheme } from 'app/providers/ThemeProvider'
+import { classNames } from '@/shared/lib/className'
+import { useModal } from '@/shared/lib/hooks/useModal'
+import { useTheme } from '@/app/providers/ThemeProvider'
 import { Portal } from '../Portal/Portal'
 
 import styles from './Modal.module.scss'

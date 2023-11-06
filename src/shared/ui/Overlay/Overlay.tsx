@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { classNames } from 'shared/lib/className'
+import { classNames } from '@/shared/lib/className'
 
 import cls from './Overlay.module.scss'
 
