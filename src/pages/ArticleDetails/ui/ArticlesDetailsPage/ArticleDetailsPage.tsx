@@ -11,14 +11,15 @@ import {
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect'
 import { Page } from '@/widgets/Page/Page'
+import { ArticleRating } from '@/features/articleRating'
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList'
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { articleDetailsPageReducer } from '../../model/slices'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader'
 import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations'
+import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments'
 
 import styles from './ArticleDetailsPage.module.scss'
-import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments'
 
 const reducers: ReducersList = {
     articleDetailsPage: articleDetailsPageReducer,
@@ -45,6 +46,7 @@ const ArticleDetailsPage = () => {
                 <VStack gap='16' max>
                     <ArticleDetailsPageHeader />
                     <ArticleDetails articleId={id} />
+                    <ArticleRating articleId={id} />
                     <ArticleRecommendationsList />
                     <ArticleDetailsComments id={id} />
                 </VStack>

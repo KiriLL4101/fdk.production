@@ -1,7 +1,7 @@
 import { UserRoles } from '../consts/userConsts';
 
 export interface User {
-    id: number
+    id: string
     username: string
     avatar?: string
     roles?: UserRoles[];
