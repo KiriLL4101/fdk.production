@@ -8,13 +8,13 @@ export enum ButtonTheme {
     OUTLINE = 'outline',
     OUTLINE_RED = 'outline_red',
     BACKGROUND = 'background',
-    BACKGROUND_INVERTED = 'backgroundInverted'
+    BACKGROUND_INVERTED = 'backgroundInverted',
 }
 
 export enum ButtonSize {
     M = 'size_m',
     L = 'size_l',
-    XL = 'size_xl'
+    XL = 'size_xl',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -22,6 +22,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: ButtonTheme
     square?: boolean
     size?: ButtonSize
+    fullWidth?: boolean
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -32,22 +33,20 @@ export const Button = memo((props: ButtonProps) => {
         square,
         size = ButtonSize.M,
         disabled = false,
+        fullWidth = false,
         ...otherProps
     } = props
 
     const mods: Record<string, boolean> = {
         [styles.square]: Boolean(square),
-        [styles.disabled]: disabled
+        [styles.disabled]: disabled,
+        [styles.fullWidth]: fullWidth,
     }
 
     return (
         <button
             type='button'
-            className={classNames(styles.Button, mods, [
-                className,
-                styles[theme],
-                styles[size]
-            ])}
+            className={classNames(styles.Button, mods, [className, styles[theme], styles[size]])}
             {...otherProps}
         >
             {children}
